@@ -1,120 +1,125 @@
 const FAQ = () => {
+  const faqs = [
+    {
+      question: "How long does it take to format a book?",
+      answer:
+        "Most book formatting projects take 3–5 business days depending on the manuscript length, complexity, and required revisions.",
+    },
+    {
+      question: "Do you support Amazon KDP requirements?",
+      answer:
+        "Yes. Every file is optimized for Amazon KDP, IngramSpark, Apple Books, Barnes & Noble Press, and EPUB industry standards.",
+    },
+    {
+      question: "Can I request revisions?",
+      answer:
+        "Absolutely. We provide unlimited revisions until you are completely satisfied with the final result.",
+    },
+    {
+      question: "What formats do you deliver?",
+      answer:
+        "We deliver print-ready PDF, EPUB, Kindle-compatible files, and publisher-specific formats based on your requirements.",
+    },
+    {
+      question: "How do I place an order?",
+      answer:
+        "You can order directly through our website or contact us for a custom quote based on your project requirements.",
+    },
+  ];
+
   return (
-    <section class="py-24 bg-slate-50 dark:bg-slate-950">
-      <div class="max-w-4xl mx-auto px-6 lg:px-8">
-        {/* <!-- Header --> */}
-        <div class="text-center mb-14">
-          <span class="inline-block text-sm font-semibold uppercase tracking-widest text-indigo-600 mb-4">
-            — Anything to Ask
+    <section id="faq" className="container mx-auto lg:py-20">
+      {/* Background Glow */}
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-md">
+            ✨ Anything To Ask
           </span>
 
-          <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">
-            Frequently Asked Questions
+          <h2 className="mt-6 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+            Frequently Asked
+            <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Questions
+            </span>
           </h2>
 
-          <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-            Before contacting us, check whether your question is already
-            answered below.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Before reaching out, you may find the answer to your question below.
           </p>
         </div>
 
-        {/* <!-- FAQ Items --> */}
-        <div class="space-y-4">
-          {/* <!-- Item 1 --> */}
-          <div class="group border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden">
-            <details class="group">
-              <summary class="flex items-center justify-between cursor-pointer px-6 py-5 list-none">
-                <span class="font-semibold text-slate-900 dark:text-white">
-                  How long does it take to format a book?
-                </span>
+        {/* FAQ Items */}
+        <div className="space-y-5">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="
+                overflow-hidden
+                rounded-3xl
 
-                <span class="text-slate-500 group-open:rotate-180 transition-transform text-xl">
-                  ▾
-                </span>
-              </summary>
+                border
+                border-white/10
 
-              <div class="px-6 pb-5 text-slate-600 dark:text-slate-400 leading-relaxed">
-                Most book formatting projects take 3–5 business days depending
-                on complexity and length.
-              </div>
-            </details>
-          </div>
+                bg-white/5
 
-          {/* <!-- Item 2 --> */}
-          <div class="group border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden">
-            <details>
-              <summary class="flex items-center justify-between cursor-pointer px-6 py-5 list-none">
-                <span class="font-semibold text-slate-900 dark:text-white">
-                  Do you support Amazon KDP requirements?
-                </span>
-                <span class="text-slate-500 group-open:rotate-180 transition-transform text-xl">
-                  ▾
-                </span>
-              </summary>
+                backdrop-blur-xl
 
-              <div class="px-6 pb-5 text-slate-600 dark:text-slate-400">
-                Yes. Every file is fully optimized for Amazon KDP, IngramSpark,
-                Apple Books, and EPUB standards.
-              </div>
-            </details>
-          </div>
+                transition-all
+                duration-300
 
-          {/* <!-- Item 3 --> */}
-          <div class="group border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden">
-            <details>
-              <summary class="flex items-center justify-between cursor-pointer px-6 py-5 list-none">
-                <span class="font-semibold text-slate-900 dark:text-white">
-                  Can I request revisions?
-                </span>
-                <span class="text-slate-500 group-open:rotate-180 transition-transform text-xl">
-                  ▾
-                </span>
-              </summary>
+                hover:border-cyan-400/20
+                hover:bg-white/10
+              "
+            >
+              <details className="group">
+                <summary
+                  className="
+                    flex
+                    cursor-pointer
+                    list-none
+                    items-center
+                    justify-between
 
-              <div class="px-6 pb-5 text-slate-600 dark:text-slate-400">
-                Yes, unlimited revisions are included until you are fully
-                satisfied with the final result.
-              </div>
-            </details>
-          </div>
+                    px-6
+                    py-6
+                  "
+                >
+                  <span className="pr-4 text-lg font-semibold text-white">
+                    {faq.question}
+                  </span>
 
-          {/* <!-- Item 4 --> */}
-          <div class="group border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden">
-            <details>
-              <summary class="flex items-center justify-between cursor-pointer px-6 py-5 list-none">
-                <span class="font-semibold text-slate-900 dark:text-white">
-                  What formats do you deliver?
-                </span>
-                <span class="text-slate-500 group-open:rotate-180 transition-transform text-xl">
-                  ▾
-                </span>
-              </summary>
+                  <span
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      items-center
+                      justify-center
 
-              <div class="px-6 pb-5 text-slate-600 dark:text-slate-400">
-                We deliver print-ready PDF, EPUB, MOBI, and platform-specific
-                files for Kindle and other publishers.
-              </div>
-            </details>
-          </div>
+                      rounded-full
 
-          {/* <!-- Item 5 --> */}
-          <div class="group border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden">
-            <details>
-              <summary class="flex items-center justify-between cursor-pointer px-6 py-5 list-none">
-                <span class="font-semibold text-slate-900 dark:text-white">
-                  How do I place an order?
-                </span>
-                <span class="text-slate-500 group-open:rotate-180 transition-transform text-xl">
-                  ▾
-                </span>
-              </summary>
+                      bg-white/10
 
-              <div class="px-6 pb-5 text-slate-600 dark:text-slate-400">
-                You can place an order directly through our website, Fiverr, or
-                Upwork profile.
-              </div>
-            </details>
-          </div>
+                      text-cyan-300
+
+                      transition-transform
+                      duration-300
+
+                      group-open:rotate-180
+                    "
+                  >
+                    ▼
+                  </span>
+                </summary>
+
+                <div className="border-t border-white/10 px-6 pb-6 pt-4">
+                  <p className="leading-7 text-slate-300">{faq.answer}</p>
+                </div>
+              </details>
+            </div>
+          ))}
         </div>
       </div>
     </section>

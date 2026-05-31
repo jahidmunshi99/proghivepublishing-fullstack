@@ -64,6 +64,10 @@ body {
   background: linear-gradient(to top, #070b27, #032f4a);
 }
 
+.dark {
+  background-color: #0e0918;
+}
+
 .text-theme {
   color: #e4ffe2;
 }
@@ -75,4 +79,13 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

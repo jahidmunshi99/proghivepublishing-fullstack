@@ -12,74 +12,51 @@ const Header = () => {
   // console.log(authState);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50  bg-theme shadow-md border-b border-gray-500">
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center h-18">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] ">
+      {/* Glass Container */}
+      <div className="bg-theme opacity-90 border-white/10 shadow-lg rounded-2xl px-5">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex-[shrink-0]">
-            <Link href="/" className="text-2xl  text-white">
-              <Image
-                className="w-35"
-                src={Icons.Logo}
-                alt="Picture of the author"
-              />
-            </Link>
-          </div>
+          <Link href="/" className="flex items-center">
+            <Image className="w-28 md:w-32" src={Icons.Logo} alt="Logo" />
+          </Link>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-8">
-            <Link
-              href="/"
-              className="text-white hover:text-rose-600 transition font-semibold"
-            >
-              Home
-            </Link>
-            <Link
-              href="/service"
-              className="text-white cursor-pointer hover:text-rose-600 font-semibold"
-            >
-              Services
-            </Link>
-
-            <Link
-              href="/portfolio"
-              className="text-white hover:text-rose-600 transition font-semibold"
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="/#testimonial"
-              className="text-white hover:text-rose-600 transition font-semibold"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/#contact"
-              className="text-white hover:text-rose-600 transition font-semibold"
-            >
-              Contact
-            </Link>
+          <nav className="hidden md:flex items-center gap-8">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/service", label: "Services" },
+              { href: "/portfolio", label: "Portfolio" },
+              { href: "/#testimonial", label: "Blog" },
+              { href: "/#contact", label: "Contact" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-white/80 hover:text-white font-medium transition relative group"
+              >
+                {item.label}
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#EA4B71] transition-all group-hover:w-full"></span>
+              </Link>
+            ))}
           </nav>
 
-          {/* CTA Button (Desktop) */}
-          {/* {!authState?.isAuthenticated ? ( */}
-          <div className="hidden md:block">
+          {/* CTA Desktop */}
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="/login"
-              className="ml-2 flex text-white items-center gap-2 rounded border px-3 py-1.5 cursor-pointer hover:border-rose-600 hover:bg-rose-600 shadow-md shadow-cyan-500/20"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-white/90 
+          hover:bg-rose-600 hover:border-rose-600 transition shadow-md"
             >
-              <Icons.User className="text-white" />
-              <span>Sign in/Sign up</span>
+              <Icons.User className="w-4 h-4" />
+              <span className="text-sm">Sign in</span>
             </Link>
           </div>
-          {/* // )  */}
-          {/* : ( */}
-          {/* //   <ProfileMenu /> */}
-          {/* // )} */}
-          {/* Mobile Menu Button */}
+
+          {/* Mobile Button */}
           <button
-            className="md:hidden text-white focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition"
             aria-label="Toggle menu"
           >
             {isOpen ? (
@@ -116,37 +93,37 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <nav className="flex flex-col space-y-4 px-6 py-6">
-            <a
-              href="#"
-              className="text-gray-700 hover:text-rose-600 transition"
-            >
-              Home
-            </a>
+      <div
+        className={`md:hidden mt-3 transition-all duration-300 ${
+          isOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-xl">
+          <nav className="flex flex-col gap-4">
+            {["Home", "Services", "Portfolio", "Blog", "Contact"].map(
+              (label, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="text-white/80 hover:text-white transition text-sm font-medium"
+                >
+                  {label}
+                </a>
+              )
+            )}
 
-            <a
-              href="#"
-              className="text-gray-700 hover:text-rose-600 transition"
+            <Link
+              href="/login"
+              className="mt-2 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-rose-600 text-white text-sm font-medium"
             >
-              Services
-            </a>
-            <a
-              href="#"
-              className="text-gray-700 hover:text-rose-600 transition"
-            >
-              Portfolio
-            </a>
-            <a
-              href="#"
-              className="text-gray-700  hover:text-rose-600 transition"
-            >
-              Contact
-            </a>
+              <Icons.User className="w-4 h-4" />
+              Sign in
+            </Link>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
