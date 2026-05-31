@@ -12,9 +12,9 @@ const Header = () => {
   // console.log(authState);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50  bg-sky-950 shadow-md">
+    <header className="fixed top-0 left-0 w-full z-50  bg-theme shadow-md border-b border-gray-500">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-18">
           {/* Logo */}
           <div className="flex-[shrink-0]">
             <Link href="/" className="text-2xl  text-white">

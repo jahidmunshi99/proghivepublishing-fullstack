@@ -27,12 +27,29 @@ body {
 
 .section-tag {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+
+  background: linear-gradient(to top, #142bf7, #00ade6);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
   margin-bottom: 0.75rem;
+}
+
+.section {
+  display: block;
+  font-size: 2.3rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: #171717;
 }
 
 .section-sub {
@@ -41,4 +58,21 @@ body {
   line-height: 1.75;
   max-width: 1000px;
   margin: auto;
+}
+
+.bg-theme {
+  background: linear-gradient(to top, #070b27, #032f4a);
+}
+
+.text-theme {
+  color: #e4ffe2;
+}
+
+.gradient-text {
+  display: block;
+  color: transparent;
+  background: linear-gradient(to right, #4959eb, #05d1f0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

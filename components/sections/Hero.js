@@ -20,7 +20,7 @@ const Hero = () => {
             </div>
 
             {/* <!-- Heading --> */}
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+            <h1 className="text-5xl lg:text-4xl font-bold leading-tight">
               Transform Your Words Into
               <span className="block text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
                 Published Masterpieces

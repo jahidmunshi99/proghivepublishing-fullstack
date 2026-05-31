@@ -6,9 +6,7 @@ const Services = () => {
     <section className="py-20 bg-[gradient-to-b] from-sky-950 to-sky-900 ">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span className="section-tag">— What We Offer</span>
-        <h2 className="text-rose-500 text-4xl font-semibold tracking-widest uppercase mb-3">
-          Save Your Time & Energy
-        </h2>
+        <h2 className="section">Save Your Time & Energy</h2>
         <p className="section-sub">
           Simplify your publishing journey by partnering with a skilled
           self-publishing, design, and marketing specialist who handles the

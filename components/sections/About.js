@@ -5,9 +5,7 @@ const About = () => {
         {/* <!-- Left Content --> */}
         <div>
           {/* <!-- Section Tag --> */}
-          <span className="inline-block text-indigo-600 font-semibold tracking-wide uppercase text-sm mb-4">
-            — Why Proghive
-          </span>
+          <span className="section-tag mb-4">— Why Proghive</span>
 
           {/* <!-- Title --> */}
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
@@ -109,13 +107,13 @@ const About = () => {
           {/* <!-- Video Placeholder --> */}
           <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-900 aspect-video shadow-2xl">
             {/* <!-- Background Overlay --> */}
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-cyan-500/20"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-indigo-600/20 to-cyan-500/20"></div>
 
             {/* <!-- Content --> */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               {/* <!-- Play Button --> */}
               <div className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 hover:scale-105 transition duration-300 cursor-pointer">
-                <div className="w-0 h-0 border-l-[20px] border-l-white border-y-[12px] border-y-transparent ml-1"></div>
+                <div className="w-0 h-0 border-l-20 border-l-white border-y-12 border-y-transparent ml-1"></div>
               </div>
 
               <h4 className="text-white font-semibold text-lg">
