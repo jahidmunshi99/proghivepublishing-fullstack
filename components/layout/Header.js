@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] ">
       {/* Glass Container */}
-      <div className="bg-theme opacity-90 border-white/10 shadow-lg rounded-2xl px-5">
+      <div className="border rounded-2xl border-white/20 opacity-90 bg-[#060A23] shadow-lg shadow-white/10 px-5">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -25,18 +25,18 @@ const Header = () => {
           <nav className="hidden md:flex items-center gap-8">
             {[
               { href: "/", label: "Home" },
-              { href: "/service", label: "Services" },
-              { href: "/portfolio", label: "Portfolio" },
-              { href: "/#testimonial", label: "Blog" },
+              { href: "/#service", label: "Services" },
+              { href: "/#portfolio", label: "Portfolio" },
+              { href: "/blog", label: "Blog" },
               { href: "/#contact", label: "Contact" },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white/80 hover:text-white font-medium transition relative group"
+                className="hover:text-[#00a4fe] text-white font-medium transition relative group"
               >
                 {item.label}
-                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#EA4B71] transition-all group-hover:w-full"></span>
+                <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00a4fe] transition-all group-hover:w-full"></span>
               </Link>
             ))}
           </nav>
@@ -45,11 +45,22 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/login"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-white/90 
-          hover:bg-rose-600 hover:border-rose-600 transition shadow-md"
+              className="
+    inline-flex items-center gap-2
+    px-4 py-2
+    rounded-xl
+    bg-white/10
+    text-sm font-medium text-white/90
+    shadow-md
+    transition-all duration-300
+    border border-transparent
+    hover:border-[#33B6EF]
+    hover:shadow-[0_0_20px_rgba(51,182,239,0.4)]
+    active:scale-95
+  "
             >
-              <Icons.User className="w-4 h-4" />
-              <span className="text-sm">Sign in</span>
+              <Icons.User className="h-4 w-4" />
+              <span>Sign In</span>
             </Link>
           </div>
 
@@ -111,12 +122,24 @@ const Header = () => {
                 >
                   {label}
                 </a>
-              )
+              ),
             )}
 
             <Link
               href="/login"
-              className="mt-2 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-rose-600 text-white text-sm font-medium"
+              className="
+    mt-2 flex items-center justify-center gap-2
+    px-4 py-2
+    rounded-xl
+    bg-white/10
+    text-sm font-medium text-white
+    border border-transparent
+    shadow-md
+    transition-all duration-300 ease-in-out
+    hover:border-[#33B6EF]
+    hover:shadow-[0_0_18px_rgba(51,182,239,0.35)]
+    active:scale-95
+  "
             >
               <Icons.User className="w-4 h-4" />
               Sign in

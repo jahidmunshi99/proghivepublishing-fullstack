@@ -62,7 +62,7 @@ const Portfolio = () => {
               >
                 {tab}
               </button>
-            )
+            ),
           )}
         </div>
         {/* Portfolio Grid */}

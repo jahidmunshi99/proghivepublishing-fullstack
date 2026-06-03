@@ -72,6 +72,18 @@ body {
   color: #e4ffe2;
 }
 
+.menu-text {
+  color: #ffff;
+  display: block;
+  font-weight: 400;
+}
+
+.menu-text:hover {
+  color: #00a4fe;
+
+  transition: all;
+}
+
 .gradient-text {
   display: block;
   color: transparent;

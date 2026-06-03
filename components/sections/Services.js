@@ -41,7 +41,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-15 container mx-auto px-15">
+    <section id="#service" className="py-15 container mx-auto px-15">
       {/* Header */}
       <div className="mx-auto max-w-3xl text-center mb-16">
         <span

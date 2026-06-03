@@ -53,7 +53,7 @@ const About = () => {
             {/* Heading */}
             <h2 className="mt-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
               Publishing Expertise
-              <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="block bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 You Can Trust
               </span>
             </h2>
