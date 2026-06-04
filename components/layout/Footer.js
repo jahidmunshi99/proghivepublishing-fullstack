@@ -1,207 +1,170 @@
 const Footer = () => {
   return (
-    <>
-      <footer className="dark border-t border-slate-800 w-full">
-        <div className="container mx-auto">
-          <div className="mx-auto py-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-              {/* <!-- Brand --> */}
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Proghive Publishing
-                </h3>
+    <footer className="w-full border-t border-white/10 bg-slate-950">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Footer */}
+        <div className="py-14 md:py-20">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+            {/* Brand */}
+            <div className="lg:col-span-1">
+              <h3 className="text-2xl font-bold text-white">
+                Proghive Publishing
+              </h3>
 
-                <p className="text-slate-400 leading-relaxed mb-6">
-                  Premium book formatting and publishing services for authors
-                  and self-publishers worldwide. Your story deserves to be read
-                  — let's make that happen.
-                </p>
-
-                <div className="flex items-center gap-3">
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 text-white flex items-center justify-center transition-all duration-300"
-                  >
-                    𝕏
-                  </a>
-
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 text-white flex items-center justify-center transition-all duration-300"
-                  >
-                    in
-                  </a>
-
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 text-white flex items-center justify-center transition-all duration-300"
-                  >
-                    f
-                  </a>
-
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-slate-800 hover:bg-indigo-600 text-white flex items-center justify-center transition-all duration-300"
-                  >
-                    ▶
-                  </a>
-                </div>
-              </div>
-
-              {/* <!-- Quick Links --> */}
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-5">
-                  Quick Links
-                </h4>
-
-                <ul className="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Home
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Portfolio
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* <!-- Services --> */}
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-5">
-                  Services
-                </h4>
-
-                <ul className="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Paperback Formatting
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Hardcover Formatting
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Kindle eBook
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      EPUB Formatting
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      Book Cover Design
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      KDP Publishing
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* <!-- Newsletter --> */}
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-5">
-                  Newsletter
-                </h4>
-
-                <p className="text-sm text-slate-400 mb-4">
-                  Publishing tips, industry news, and special offers for
-                  authors.
-                </p>
-
-                <form className="space-y-3">
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="w-full px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-
-                  <button
-                    type="submit"
-                    className="w-full px-4 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-all duration-300"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-
-                <p className="text-xs text-slate-500 mt-3">
-                  No spam. Unsubscribe anytime.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* <!-- Bottom --> */}
-          <div className="border-t border-slate-800">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-slate-500">
-                © 2025 Proghive Publishing. All rights reserved.
+              <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
+                Premium book formatting and publishing services for authors and
+                self-publishers worldwide. Your story deserves to be read —
+                let's make that happen.
               </p>
 
-              <p className="text-sm text-slate-500">Crafted by Jahid Munshi</p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                {["𝕏", "in", "f", "▶"].map((icon, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="
+                      flex h-10 w-10 items-center justify-center
+                      rounded-full
+                      border border-white/10
+                      bg-white/5
+                      text-white
+                      backdrop-blur-xl
+                      transition-all duration-300
+                      hover:-translate-y-1
+                      hover:border-cyan-400/30
+                      hover:bg-cyan-500/10
+                      hover:text-cyan-300
+                    "
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="mb-5 text-lg font-semibold text-white">
+                Quick Links
+              </h4>
+
+              <ul className="space-y-3">
+                {["Home", "About", "Portfolio", "Blog", "Contact"].map(
+                  (item) => (
+                    <li key={item}>
+                      <a
+                        href="#"
+                        className="text-slate-400 transition-colors duration-300 hover:text-cyan-400"
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="mb-5 text-lg font-semibold text-white">
+                Services
+              </h4>
+
+              <ul className="space-y-3">
+                {[
+                  "Paperback Formatting",
+                  "Hardcover Formatting",
+                  "Kindle eBook",
+                  "EPUB Formatting",
+                  "Book Cover Design",
+                  "KDP Publishing",
+                ].map((service) => (
+                  <li key={service}>
+                    <a
+                      href="#"
+                      className="text-slate-400 transition-colors duration-300 hover:text-cyan-400"
+                    >
+                      {service}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h4 className="mb-5 text-lg font-semibold text-white">
+                Newsletter
+              </h4>
+
+              <p className="mb-5 text-sm leading-6 text-slate-400">
+                Publishing tips, industry news, and special offers for authors.
+              </p>
+
+              <form className="space-y-3">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    px-4
+                    py-3
+                    text-white
+                    placeholder:text-slate-500
+                    backdrop-blur-xl
+                    outline-none
+                    transition-all
+                    focus:border-cyan-400/40
+                    focus:ring-2
+                    focus:ring-cyan-400/10
+                  "
+                />
+
+                <button
+                  type="submit"
+                  className="
+                    w-full
+                    rounded-xl
+                    bg-cyan-500
+                    px-4
+                    py-3
+                    font-medium
+                    text-slate-950
+                    transition-all
+                    duration-300
+                    hover:bg-cyan-400
+                    hover:shadow-[0_0_30px_rgba(34,211,238,0.25)]
+                  "
+                >
+                  Subscribe
+                </button>
+              </form>
+
+              <p className="mt-3 text-xs text-slate-500">
+                No spam. Unsubscribe anytime.
+              </p>
             </div>
           </div>
         </div>
-      </footer>
-    </>
+
+        {/* Bottom Footer */}
+        <div className="border-t border-white/10">
+          <div className="flex flex-col items-center justify-between gap-3 py-6 text-center md:flex-row md:text-left">
+            <p className="text-sm text-slate-500">
+              © 2026 Proghive Publishing. All rights reserved.
+            </p>
+
+            <p className="text-sm text-slate-500">
+              Crafted with ❤️ by Jahid Munshi
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

@@ -51,9 +51,9 @@ const About = () => {
             </span>
 
             {/* Heading */}
-            <h2 className="mt-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
               Publishing Expertise
-              <span className="block bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="block mt-1 bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
                 You Can Trust
               </span>
             </h2>

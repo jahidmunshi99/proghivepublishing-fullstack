@@ -6,243 +6,98 @@ const services = [
     title: "Self Publishing",
     description:
       "Complete self-publishing solutions including formatting, cover design, and KDP upload support.",
-    icon: <Icons.BookIcon size={42} className="text-cyan-300" />,
+    icon: <Icons.BookIcon size={36} className="text-cyan-300" />,
     href: "/service/self-publishing",
   },
   {
     title: "Developer",
     description:
       "Custom web applications, SaaS platforms, automation systems, and scalable business solutions.",
-    icon: <Icons.CodeLaptop size={42} className="text-cyan-300" />,
+    icon: <Icons.CodeLaptop size={36} className="text-cyan-300" />,
     href: "#",
   },
   {
     title: "Marketer",
     description:
       "Digital marketing strategies, lead generation, SEO optimization, and growth-focused campaigns.",
-    icon: <Icons.Marketer size={42} className="text-cyan-300" />,
+    icon: <Icons.Marketer size={36} className="text-cyan-300" />,
     href: "#",
   },
   {
     title: "Designer",
     description:
       "Professional UI/UX design, branding, graphics, and creative visual experiences.",
-    icon: <Icons.Edit size={42} className="text-cyan-300" />,
+    icon: <Icons.Edit size={36} className="text-cyan-300" />,
     href: "/service/designer",
   },
   {
     title: "Admin Support",
     description:
       "Reliable virtual assistance, customer support, data entry, and business administration services.",
-    icon: <Icons.CustomerSupport size={42} className="text-cyan-300" />,
+    icon: <Icons.CustomerSupport size={36} className="text-cyan-300" />,
     href: "#",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="#service" className="py-15 container mx-auto px-15">
-      {/* Header */}
-      <div className="mx-auto max-w-3xl text-center mb-16">
-        <span
-          className="
-          inline-flex
-          items-center
-          rounded-full
-          border
-          border-cyan-400/20
-          bg-cyan-500/10
-          px-4
-          py-2
-          text-sm
-          font-medium
-          text-cyan-300
-          backdrop-blur-md
-        "
-        >
-          ✨ What We Offer
-        </span>
-
-        <h2
-          className="
-          mt-6
-          text-4xl
-          md:text-5xl
-          font-bold
-          tracking-tight
-          text-white
-        "
-        >
-          Save Your Time &
-          <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Energy
-          </span>
-        </h2>
-
-        <p
-          className="
-          mt-6
-          text-lg
-          leading-8
-          text-slate-300
-        "
-        >
-          Simplify your publishing journey by partnering with experts in
-          self-publishing, design, development, and marketing. Focus on creating
-          while we handle the technical work.
-        </p>
+    <section
+      id="service"
+      className="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8"
+    >
+      {/* Background Glow */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -top-40 left-1/2 h-125 w-125 -translate-x-1/2 rounded-full bg-cyan-500/10 blur-[140px]" />
       </div>
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {services.map((service, index) => (
-          <Link key={index} href={service.href}>
-            <div
-              className="
-                group
-                relative
-                h-72
-                overflow-hidden
-                rounded-3xl
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-xl">
+            ✨ What We Offer
+          </span>
+          <h2 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            Save Your Time &
+            <span className="block bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
+              Energy
+            </span>
+          </h2>
 
-                bg-white/5
-                backdrop-blur-xl
+          <p className="mt-6 text-sm sm:text-base md:text-lg leading-7 text-slate-300">
+            Simplify your publishing journey by partnering with experts in
+            self-publishing, design, development, and marketing.
+          </p>
+        </div>
 
-                border border-white/10
+        {/* Grid */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <Link key={index} href={service.href}>
+              <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/30 hover:shadow-[0_20px_60px_rgba(34,211,238,0.12)]">
+                {/* Glow */}
+                <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-cyan-500/20 blur-3xl opacity-0 transition duration-500 group-hover:opacity-100" />
 
-                shadow-[0_8px_32px_rgba(0,0,0,0.25)]
-
-                hover:border-cyan-400/30
-                hover:shadow-cyan-500/20
-                hover:-translate-y-2
-
-                transition-all
-                duration-500
-
-                cursor-pointer
-              "
-            >
-              {/* Glow Effect */}
-              <div
-                className="
-                  absolute
-                  -top-20
-                  -right-20
-
-                  h-40
-                  w-40
-
-                  rounded-full
-
-                  bg-cyan-500/20
-
-                  blur-3xl
-
-                  opacity-0
-                  group-hover:opacity-100
-
-                  transition-all
-                  duration-700
-                "
-              />
-
-              {/* Default View */}
-              <div
-                className="
-                  absolute
-                  inset-0
-
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-
-                  transition-all
-                  duration-500
-
-                  group-hover:opacity-0
-                  group-hover:scale-90
-                "
-              >
-                <div
-                  className="
-                    mb-5
-
-                    flex
-                    h-16
-                    w-16
-
-                    items-center
-                    justify-center
-
-                    rounded-2xl
-
-                    bg-white/10
-
-                    backdrop-blur-md
-
-                    border
-                    border-white/10
-                  "
-                >
+                {/* Icon */}
+                <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/10 backdrop-blur-xl">
                   {service.icon}
                 </div>
 
-                <h3 className="text-2xl font-semibold text-white text-center">
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-white">
                   {service.title}
                 </h3>
+
+                {/* Description */}
+                <p className="mt-3 text-sm leading-6 text-slate-400">
+                  {service.description}
+                </p>
+
+                {/* Hover accent */}
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-500 group-hover:w-full" />
               </div>
-
-              {/* Hover View */}
-              <div
-                className="
-                  absolute
-                  inset-0
-
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-
-                  px-6
-
-                  opacity-0
-                  translate-y-10
-
-                  transition-all
-                  duration-500
-
-                  group-hover:opacity-100
-                  group-hover:translate-y-0
-                "
-              >
-                <div
-                  className="
-                    absolute
-                    inset-0
-
-                    bg-gradient-to-br
-                    from-cyan-500/10
-                    via-sky-500/5
-                    to-transparent
-
-                    backdrop-blur-xl
-                  "
-                />
-
-                <div className="relative z-10 text-center">
-                  <h3 className="mb-4 text-2xl font-semibold text-white">
-                    {service.title}
-                  </h3>
-
-                  <p className="leading-relaxed text-gray-300 text-sm">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

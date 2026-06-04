@@ -1,229 +1,164 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
+
+/* ---------------- COUNT UP HOOK ---------------- */
+const useCountUp = (target, duration = 1200) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const step = target / (duration / 16);
+
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        start = target;
+        clearInterval(timer);
+      }
+      setValue(Math.floor(start));
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [target, duration]);
+
+  return value;
+};
+
+/* ---------------- BOOK DATA ---------------- */
+const books = [
+  {
+    title: "Novel Design",
+    color: "from-cyan-500 to-sky-500",
+  },
+  {
+    title: "EPUB Ready",
+    color: "from-indigo-500 to-cyan-500",
+  },
+  {
+    title: "Print Layout",
+    color: "from-sky-500 to-blue-600",
+  },
+  {
+    title: "Cover Art",
+    color: "from-fuchsia-500 to-indigo-500",
+  },
+];
 
 export default function Hero() {
-  const { scrollY } = useScroll();
+  const projects = useCountUp(4000);
+  const clients = useCountUp(3500);
+  const booksCount = useCountUp(5000);
 
-  const rotateY = useTransform(scrollY, [0, 600], [0, 22]);
-  const scale = useTransform(scrollY, [0, 600], [1, 0.94]);
-  const y = useTransform(scrollY, [0, 600], [0, -50]);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, -40]);
 
   return (
     <section className="relative overflow-hidden bg-slate-950 text-white">
-      {/* BACKGROUND (UNCHANGED) */}
-      <div className="absolute inset-0 bg-linear-to-br from-indigo-900/20 via-slate-950 to-cyan-900/20" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-size-[50px_50px]" />
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 bg-linear-to-br from-slate-950 via-indigo-950/40 to-cyan-950/30" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.12),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(99,102,241,0.12),transparent_40%)]" />
 
-      {/* 🔥 TIGHTER CONTAINER (FIXED PADDING) */}
-      <div className="relative mx-auto container px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-        {/* GRID BALANCED */}
-        <div className="grid lg:grid-cols-[60%_40%] gap-10 lg:gap-14 items-center">
-          {/* ================= LEFT SIDE ================= */}
-          <div className="w-full">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs sm:text-sm font-medium mb-6">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+        <div className="grid lg:grid-cols-2 gap-14 items-center">
+          {/* ================= LEFT (UNTOUCHED ORIGINAL UI) ================= */}
+          <div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm mb-6">
               ✦ Professional Publishing Services
             </div>
 
-            <h1 className="font-bold leading-[1.05] tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl">
+            <h1 className="font-bold leading-[1.05] text-3xl sm:text-4xl md:text-5xl lg:text-5xl">
               Transform Your Words Into{" "}
-              <span className="block text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
+              <span className="block bg-linear-to-r from-cyan-400 via-sky-400 to-indigo-500 bg-clip-text text-transparent">
                 Published Masterpieces
               </span>
             </h1>
 
-            <p className="mt-6 sm:mt-8 text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl">
-              Proghive Publishing delivers premium book formatting, layout
-              design, and full-service publishing assistance for authors and
-              self-publishers who demand nothing less than excellence.
+            <p className="mt-6 text-slate-300 max-w-xl text-sm sm:text-base lg:text-lg">
+              Premium book formatting, cover design, and publishing workflow
+              crafted for modern authors and self-publishers.
             </p>
 
-            <div className="flex flex-wrap gap-3 sm:gap-4 mt-8 sm:mt-10">
-              <a
-                href="#"
-                className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 font-semibold transition text-sm sm:text-base"
-              >
+            {/* CTA */}
+            <div className="flex flex-wrap gap-3 mt-8">
+              <a className="px-6 py-3 rounded-xl bg-linear-to-r from-cyan-500 to-sky-500 text-slate-950 font-semibold hover:scale-105 transition cursor-pointer">
                 Get Started
               </a>
-
-              <a
-                href="#portfolio"
-                className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-slate-700 hover:border-indigo-500 hover:bg-slate-900 transition text-sm sm:text-base"
-              >
+              <a className="px-6 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition cursor-pointer">
                 View Portfolio
               </a>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-12 max-w-lg">
-              <div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-indigo-400">
-                  4000+
-                </h3>
-                <p className="text-slate-400 text-xs sm:text-sm">Projects</p>
-              </div>
-
-              <div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-indigo-400">
-                  3500+
-                </h3>
-                <p className="text-slate-400 text-xs sm:text-sm">
-                  Happy Clients
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-indigo-400">
-                  5000+
-                </h3>
-                <p className="text-slate-400 text-xs sm:text-sm">
-                  Published Books
-                </p>
-              </div>
+            {/* STATS */}
+            <div className="grid grid-cols-3 gap-4 mt-10 max-w-lg">
+              {[
+                { label: "Projects", value: projects },
+                { label: "Clients", value: clients },
+                { label: "Books", value: booksCount },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="border-l border-cyan-500/30 pl-4"
+                >
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-400">
+                    {item.value}+
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-400">
+                    {item.label}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          {/* ================= RIGHT SIDE (UNCHANGED SVG) ================= */}
-          <div className="relative w-full flex justify-center items-center">
-            <div className="absolute w-[720px] h-[420px] bg-indigo-500/20 blur-[180px] rounded-full" />
-
-            <svg
-              width="720"
-              height="380"
-              viewBox="0 0 720 380"
-              className="relative z-10"
-              fill="none"
+          {/* ================= RIGHT (BOX COMPLETELY REMOVED - TRANSPARENT OVER BG) ================= */}
+          <div className="">
+            <motion.div
+              style={{ y }}
+              className="relative flex justify-center items-center h-140 bg-transparent"
             >
-              <defs>
-                <linearGradient id="teamFlow" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#22d3ee" />
-                  <stop offset="50%" stopColor="#6366f1" />
-                  <stop offset="100%" stopColor="#a855f7" />
-                </linearGradient>
-              </defs>
-
-              {/* FLOW PATH */}
-              <motion.path
-                d="M100 190 C 200 80, 280 80, 360 190
-             C 420 300, 520 300, 620 190"
-                stroke="url(#teamFlow)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                fill="none"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{
-                  duration: 3,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                }}
-              />
-
-              {/* MANUSCRIPT */}
-              <g>
-                <rect
-                  x="80"
-                  y="160"
-                  width="70"
-                  height="80"
-                  rx="8"
-                  fill="#0f172a"
-                  stroke="#22d3ee"
-                  strokeWidth="2"
-                />
-
-                <text x="55" y="270" fontSize="12" fill="#cbd5e1">
-                  Final Manuscript
-                </text>
-
-                <circle cx="115" cy="200" r="10" fill="#22d3ee" opacity="0.6">
-                  <animate
-                    attributeName="r"
-                    values="8;18;8"
-                    dur="1.6s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-              </g>
-
-              {/* TEAM HUB */}
-              <g>
-                <circle
-                  cx="360"
-                  cy="190"
-                  r="75"
-                  fill="#0f172a"
-                  stroke="url(#teamFlow)"
-                  strokeWidth="2"
-                />
-
-                <circle
-                  cx="360"
-                  cy="190"
-                  r="35"
-                  stroke="#6366f1"
-                  fill="none"
-                  opacity="0.5"
-                >
-                  <animate
-                    attributeName="r"
-                    values="30;50;30"
-                    dur="3s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-
-                <circle cx="340" cy="175" r="10" fill="#22d3ee" />
-                <circle cx="380" cy="175" r="10" fill="#a855f7" />
-                <circle cx="360" cy="210" r="10" fill="#6366f1" />
-
-                <text x="285" y="290" fontSize="12" fill="#cbd5e1">
-                  Proghive Publishing Team
-                </text>
-              </g>
-
-              {/* OUTPUT */}
-              <g>
-                <rect
-                  x="600"
-                  y="160"
-                  width="80"
-                  height="90"
-                  rx="8"
-                  fill="#0f172a"
-                  stroke="url(#teamFlow)"
-                  strokeWidth="2"
-                />
-
-                <line
-                  x1="635"
-                  y1="160"
-                  x2="635"
-                  y2="250"
-                  stroke="#22d3ee"
-                  opacity="0.6"
-                />
-
-                <circle
-                  cx="640"
-                  cy="205"
-                  r="20"
-                  fill="none"
-                  stroke="#a855f7"
-                  opacity="0.3"
-                >
-                  <animate
-                    attributeName="r"
-                    values="10;35;10"
-                    dur="2.2s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-
-                <text x="565" y="290" fontSize="12" fill="#cbd5e1">
-                  Publish Ready Book
-                </text>
-              </g>
-            </svg>
+              {/* 45-DEGREE INFINITE SCROLLING STREAM GRID MATRIX */}
+              <div
+                className="absolute w-[80%] h-[160%] grid grid-cols-2 gap-8 p-4 opacity-50 select-none pointer-events-none"
+                style={{ transform: "rotate(-5deg)" }}
+              >
+                {[0, 1, 2].map((colIndex) => (
+                  <motion.div
+                    key={colIndex}
+                    className="flex flex-col gap-8"
+                    animate={{
+                      // Books float continuously upwards or downwards along the rotated 45° track
+                      y: colIndex % 2 === 0 ? [700, -900] : [-900, 700],
+                    }}
+                    transition={{
+                      duration: 22 + colIndex * 4,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    {/* Array duplication ensures zero seams during frame resets */}
+                    {[...books, ...books, ...books, ...books].map(
+                      (book, idx) => (
+                        <div
+                          key={idx}
+                          className={`w-full aspect-[3/4] bg-gradient-to-br ${book.color} rounded-2xl border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] flex flex-col justify-between p-5`}
+                        >
+                          {/* Book Cover Design Accents */}
+                          <div className="w-6 h-1 bg-white/20 rounded-full" />
+                          <p className="text-white font-bold text-base tracking-wide drop-shadow-md leading-tight">
+                            {book.title}
+                          </p>
+                        </div>
+                      ),
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

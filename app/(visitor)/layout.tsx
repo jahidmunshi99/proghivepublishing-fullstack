@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Footer from "../components/layout/Footer.js";
-import Header from "../components/layout/Header.js";
-import ChatWidget from "../components/ui/ChatWidget.js";
-import ScrollToTopButton from "../components/ui/ScrollToTopButton.js";
 
-import "./globals.css";
+import Footer from "../../components/layout/Footer";
+import Header from "../../components/layout/Header";
+import ChatWidget from "../../components/ui/ChatWidget.js";
+import ScrollToTopButton from "../../components/ui/ScrollToTopButton.js";
+
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
