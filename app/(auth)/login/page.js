@@ -1,17 +1,19 @@
 import Link from "next/link";
+import { addUser } from "../../../actions/user/user";
+
 const LoginPage = () => {
   return (
     <div className="bg-slate-950 text-white antialiased min-h-screen flex items-center justify-center py-30 px-6">
       {/* Background Glow */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[-220px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#33B6EF]/10 blur-[160px] rounded-full" />
-        <div className="absolute bottom-[-250px] right-[-120px] w-[600px] h-[600px] bg-indigo-500/10 blur-[180px] rounded-full" />
+        <div className="absolute -top-55 left-1/2 -translate-x-1/2 w-175 h-175 bg-[#33B6EF]/10 blur-[160px] rounded-full" />
+        <div className="absolute -bottom-62.5 -right-30 w-150 h-150 bg-indigo-500/10 blur-[180px] rounded-full" />
       </div>
 
       {/* Container */}
       <div className="w-full max-w-5xl grid md:grid-cols-2 rounded-2xl overflow-hidden border border-white/10 bg-white/5">
         {/* LEFT SIDE */}
-        <div className="hidden md:flex flex-col justify-center p-10 bg-gradient-to-br from-[#33B6EF]/10 to-indigo-500/10 border-r border-white/10">
+        <div className="hidden md:flex flex-col justify-center p-10 bg-linear-to-br from-[#33B6EF]/10 to-indigo-500/10 border-r border-white/10">
           <h1 className="text-3xl font-semibold">
             Welcome to <span className="text-[#33B6EF]">Proghive</span>
           </h1>
@@ -41,12 +43,13 @@ const LoginPage = () => {
           </div>
 
           {/* LOGIN FORM */}
-          <form className="space-y-5">
+          <form action={addUser} className="space-y-5">
             {/* Email */}
             <div>
               <label className="text-sm text-white/60">Email</label>
               <input
                 type="email"
+                name="email"
                 placeholder="you@example.com"
                 className="w-full mt-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#33B6EF] outline-none transition"
               />
@@ -57,6 +60,7 @@ const LoginPage = () => {
               <label className="text-sm text-white/60">Password</label>
               <input
                 type="password"
+                name="password"
                 placeholder="••••••••"
                 className="w-full mt-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#33B6EF] outline-none transition"
               />
