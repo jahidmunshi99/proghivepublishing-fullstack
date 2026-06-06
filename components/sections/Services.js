@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionHeader from "../../components/ui/SectionHeader.js";
 import { Icons } from "../shared/Icons.js";
 
 const services = [
@@ -52,22 +53,13 @@ export default function Services() {
 
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-xl">
-            ✨ What We Offer
-          </span>
-          <h2 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Save Your Time &
-            <span className="block bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-              Energy
-            </span>
-          </h2>
-
-          <p className="mt-6 text-sm sm:text-base md:text-lg leading-7 text-slate-300">
-            Simplify your publishing journey by partnering with experts in
-            self-publishing, design, development, and marketing.
-          </p>
-        </div>
+        <SectionHeader
+          badge="  ✨ What We Offer"
+          title="Save Your Time &"
+          highlightedText="Energy"
+          description="Simplify your publishing journey by partnering with experts in self-publishing, design, development, and marketing."
+          align="center"
+        />
 
         {/* Grid */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

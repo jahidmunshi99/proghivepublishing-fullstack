@@ -1,31 +1,8 @@
-const FAQ = () => {
-  const faqs = [
-    {
-      question: "How long does it take to format a book?",
-      answer:
-        "Most book formatting projects take 3–5 business days depending on the manuscript length, complexity, and required revisions.",
-    },
-    {
-      question: "Do you support Amazon KDP requirements?",
-      answer:
-        "Yes. Every file is optimized for Amazon KDP, IngramSpark, Apple Books, Barnes & Noble Press, and EPUB industry standards.",
-    },
-    {
-      question: "Can I request revisions?",
-      answer:
-        "Absolutely. We provide unlimited revisions until you are completely satisfied with the final result.",
-    },
-    {
-      question: "What formats do you deliver?",
-      answer:
-        "We deliver print-ready PDF, EPUB, Kindle-compatible files, and publisher-specific formats based on your requirements.",
-    },
-    {
-      question: "How do I place an order?",
-      answer:
-        "You can order directly through our website or contact us for a custom quote based on your project requirements.",
-    },
-  ];
+import { getFaqs } from "../../actions/faq.js";
+import SectionHeader from "../ui/SectionHeader";
+
+const FAQ = async () => {
+  const faqs = await getFaqs();
 
   return (
     <section id="faq" className="container mx-auto lg:py-20">
@@ -33,21 +10,13 @@ const FAQ = () => {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-16 text-center">
-          <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-md">
-            ✨ Anything To Ask
-          </span>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Frequently Asked
-            <span className="block mt-1 bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-              Questions
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Before reaching out, you may find the answer to your question below.
-          </p>
-        </div>
+        <SectionHeader
+          badge="✨ Anything To Ask"
+          title="Frequently Asked"
+          highlightedText="Questions"
+          description="Before reaching out, you may find the answer to your question below."
+          align="center"
+        />
 
         {/* FAQ Items */}
         <div className="space-y-5">

@@ -3,6 +3,8 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+// import { getTestimonials } from "../../actions/testimonials.js";
+import SectionHeader from "../ui/SectionHeader";
 
 const testimonials = [
   {
@@ -32,6 +34,7 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  // const testimonials = await getTestimonials();
   const settings = {
     infinite: true,
     dots: true,
@@ -63,22 +66,13 @@ const Testimonials = () => {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-16 text-center">
-          <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-md">
-            ✨ Testimonials
-          </span>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            What Our Clients
-            <span className="block mt-1 bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-              Say About Us
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
-            Trusted by authors worldwide for professional publishing,
-            formatting, and design services.
-          </p>
-        </div>
+        <SectionHeader
+          badge="✨Testimonials"
+          title="What Our Clients"
+          highlightedText="Say About Us"
+          description="Trusted by authors worldwide for professional publishing, formatting, and design services."
+          align="center"
+        />
 
         {/* Slider */}
         <Slider {...settings}>

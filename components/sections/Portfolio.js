@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionHeader from "../ui/SectionHeader";
 
 const projects = [
   {
@@ -37,21 +38,13 @@ const Portfolio = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* HEADER */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-xs font-medium text-cyan-300 backdrop-blur-xl">
-            ✨ Our Portfolio
-          </span>
-          <h2 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Publishing Excellence
-            <span className="block mt-1 bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-              Crafted For Authors
-            </span>
-          </h2>
-          <p className="mt-5 text-sm md:text-base leading-7 text-slate-400">
-            Discover premium publishing projects designed with precision,
-            readability, and industry-leading standards for modern authors.
-          </p>
-        </div>
+        <SectionHeader
+          badge="✨ Our Portfolio"
+          title="Publishing Excellence"
+          highlightedText="Crafted For Authors"
+          description="Discover premium publishing projects designed with precision, readability, and industry-leading standards for modern authors."
+          align="center"
+        />
 
         {/* FILTERS */}
         <div className="mt-10 sm:mt-14 flex flex-wrap justify-center gap-2 sm:gap-3">

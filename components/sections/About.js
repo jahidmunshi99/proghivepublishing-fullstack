@@ -1,3 +1,5 @@
+import SectionHeader from "../ui/SectionHeader";
+
 const About = () => {
   const features = [
     {
@@ -45,26 +47,15 @@ const About = () => {
         <div className="grid items-center gap-20 lg:grid-cols-2 xl:gap-28">
           {/* Left Content */}
           <div>
-            {/* Badge */}
-            <span className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-md">
-              ✨ Why Proghive
-            </span>
-
-            {/* Heading */}
-            <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-              Publishing Expertise
-              <span className="block mt-1 bg-linear-to-r from-cyan-400 via-sky-400 to-blue-500 bg-clip-text text-transparent">
-                You Can Trust
-              </span>
-            </h2>
-
-            {/* Description */}
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-              With 8+ years shaping manuscripts into market-ready books, we
+            <SectionHeader
+              badge="✨ Why Proghive"
+              title="Publishing Expertise"
+              highlightedText="You Can Trust"
+              description="With 8+ years shaping manuscripts into market-ready books, we
               combine publishing expertise, design excellence, and technical
-              precision to help authors succeed.
-            </p>
-
+              precision to help authors succeed."
+              align="left"
+            />
             {/* Features */}
             <div className="mt-10 space-y-5">
               {features.map((feature, index) => (
