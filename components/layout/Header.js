@@ -18,7 +18,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image className="w-28 md:w-32" src={Icons.Logo} alt="Logo" />
+            <Image className="w-28 md:w-32" src={Icons.logo} alt="Logo" />
           </Link>
 
           {/* Desktop Menu */}

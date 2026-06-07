@@ -88,7 +88,7 @@ const Testimonials = () => {
                 </p>
 
                 {/* Divider */}
-                <div className="mb-6 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
+                <div className="mb-6 h-px bg-linear-to-r from-transparent via-cyan-500/30 to-transparent" />
 
                 {/* User */}
                 <div className="flex items-center gap-4">

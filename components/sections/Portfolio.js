@@ -1,30 +1,9 @@
 import Link from "next/link";
+import getPortfolio from "../../actions/portfolio/portfolio.js";
 import SectionHeader from "../ui/SectionHeader";
 
-const projects = [
-  {
-    title: "The Silent Journey",
-    category: "Paperback Formatting",
-    gradient: "from-violet-500 via-fuchsia-500 to-indigo-600",
-  },
-  {
-    title: "Business Blueprint",
-    category: "Hardcover Formatting",
-    gradient: "from-cyan-500 via-sky-500 to-blue-700",
-  },
-  {
-    title: "Digital Success",
-    category: "Kindle eBook Formatting",
-    gradient: "from-emerald-500 via-teal-500 to-teal-700",
-  },
-  {
-    title: "Author Mastery",
-    category: "EPUB Conversion",
-    gradient: "from-orange-500 via-amber-500 to-rose-600",
-  },
-];
-
-const Portfolio = () => {
+const Portfolio = async () => {
+  const projects = await getPortfolio();
   return (
     <section
       id="portfolio"
@@ -93,7 +72,7 @@ const Portfolio = () => {
 
                 {/* HOVER */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 backdrop-blur-md transition-all duration-500 group-hover:opacity-100">
-                  <button className="rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium text-white backdrop-blur-xl transition-all hover:bg-white/20">
+                  <button className="rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-medium text-white backdrop-blur-xl transition-all hover:bg-white/20 cursor-pointer">
                     View Project
                   </button>
                 </div>
