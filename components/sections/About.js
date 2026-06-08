@@ -65,21 +65,14 @@ const About = () => {
                 group
                 flex
                 gap-4
-
                 rounded-3xl
-
                 border
                 border-white/10
-
                 bg-white/5
-
                 p-5
-
                 backdrop-blur-xl
-
                 transition-all
                 duration-300
-
                 hover:border-cyan-400/20
                 hover:bg-white/10
                 hover:-translate-y-1
@@ -93,13 +86,9 @@ const About = () => {
                   shrink-0
                   items-center
                   justify-center
-
                   rounded-2xl
-
                   bg-cyan-500/10
-
                   text-2xl
-
                   backdrop-blur-md
                 "
                   >
@@ -126,21 +115,16 @@ const About = () => {
             relative
             aspect-video
             overflow-hidden
-
-            rounded-[32px]
-
+            rounded-4xl
             border
             border-white/10
-
             bg-white/5
-
             backdrop-blur-xl
-
             shadow-[0_10px_50px_rgba(0,0,0,0.35)]
           "
             >
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/5 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-br from-cyan-500/10 via-blue-500/5 to-transparent" />
 
               {/* Glow */}
               <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-cyan-500/20 blur-3xl" />
@@ -171,7 +155,7 @@ const About = () => {
                 cursor-pointer
               "
                 >
-                  <div className="ml-1 h-0 w-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white" />
+                  <div className="ml-1 h-0 w-0 border-y-12 border-y-transparent border-l-20 border-l-white" />
                 </div>
 
                 <h4 className="mt-6 text-xl font-semibold text-white">
@@ -191,26 +175,19 @@ const About = () => {
                   key={index}
                   className="
                 rounded-3xl
-
                 border
                 border-white/10
-
                 bg-white/5
-
                 p-6
-
                 text-center
-
                 backdrop-blur-xl
-
                 transition-all
                 duration-300
-
                 hover:border-cyan-400/20
                 hover:-translate-y-1
               "
                 >
-                  <div className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent">
+                  <div className="bg-linear-to-r from-cyan-400 to-blue-500 bg-clip-text text-4xl font-bold text-transparent">
                     {stat.value}
                   </div>
 
