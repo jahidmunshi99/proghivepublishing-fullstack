@@ -15,7 +15,10 @@ const LoginPage = () => {
         {/* LEFT SIDE */}
         <div className="hidden md:flex flex-col justify-center p-10 bg-linear-to-br from-[#33B6EF]/10 to-indigo-500/10 border-r border-white/10">
           <h1 className="text-3xl font-semibold">
-            Welcome to <span className="text-[#33B6EF]">Proghive</span>
+            Welcome to{" "}
+            <span className="text-[#33B6EF]">
+              <Link href={"/"}>Proghive</Link>
+            </span>
           </h1>
 
           <p className="text-white/60 mt-4">
@@ -38,7 +41,7 @@ const LoginPage = () => {
               Login
             </button>
             <button className="text-sm font-medium text-white/50 hover:text-white transition">
-              Register
+              <Link href={"/register"}>Register</Link>
             </button>
           </div>
 

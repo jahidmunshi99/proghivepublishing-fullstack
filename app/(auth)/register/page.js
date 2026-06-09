@@ -1,3 +1,4 @@
+import Link from "next/link";
 const RegisterPage = () => {
   return (
     <div className="bg-slate-950 text-white antialiased flex items-center justify-center px-6">
@@ -8,7 +9,10 @@ const RegisterPage = () => {
           {/* LEFT SIDE */}
           <div className="hidden md:flex flex-col justify-center p-10 bg-linear-to-br from-[#33B6EF]/10 to-indigo-500/10 border-r border-white/10">
             <h1 className="text-3xl font-semibold">
-              Join <span className="text-[#33B6EF]">Proghive</span>
+              Join{" "}
+              <span className="text-[#33B6EF]">
+                <Link href={"/"}>Proghive</Link>
+              </span>
             </h1>
 
             <p className="text-white/60 mt-4">
@@ -141,9 +145,12 @@ const RegisterPage = () => {
               {/* Login Link */}
               <p className="text-center text-sm text-white/50 mt-6">
                 Already have an account?
-                <a href="#" className="text-[#33B6EF] hover:underline ml-1">
+                <Link
+                  href="/login"
+                  className="text-[#33B6EF] hover:underline ml-1"
+                >
                   Sign in
-                </a>
+                </Link>
               </p>
             </form>
           </div>
