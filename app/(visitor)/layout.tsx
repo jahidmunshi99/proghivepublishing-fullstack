@@ -22,8 +22,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteInfo.seo.metaTitle,
-  description: siteInfo.seo.metaDescription,
+  title: siteInfo?.seo?.metaTitle,
+  description: siteInfo?.seo?.metaDescription,
 };
 
 export default function RootLayout({
@@ -39,7 +39,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Header />
         {children}
-        <Footer info={siteInfo.footer} />
+        <Footer info={siteInfo?.footer} />
         <ChatWidget />
         <ScrollToTopButton />
       </body>
