@@ -1,4 +1,4 @@
-const Footer = () => {
+const Footer = ({ info }) => {
   return (
     <footer className="w-full border-t border-white/10 bg-slate-950">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -154,13 +154,9 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="border-t border-white/10">
           <div className="flex flex-col items-center justify-between gap-3 py-6 text-center md:flex-row md:text-left">
-            <p className="text-sm text-slate-500">
-              © 2026 Proghive Publishing. All rights reserved.
-            </p>
+            <p className="text-sm text-slate-500">{info.copyrightText}</p>
 
-            <p className="text-sm text-slate-500">
-              Crafted with ❤️ by Jahid Munshi
-            </p>
+            <p className="text-sm text-slate-500">{info.developedBy}</p>
           </div>
         </div>
       </div>
