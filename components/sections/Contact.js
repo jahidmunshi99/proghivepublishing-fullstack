@@ -102,39 +102,52 @@ const Contact = () => {
 
             <form className="space-y-5">
               {/* Name + Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="text"
+                  name="fullName"
+                  autoComplete="name"
                   placeholder="Full Name"
                   className="w-full rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-white placeholder:text-slate-400 backdrop-blur-xl focus:border-cyan-400/40 focus:outline-none"
                 />
 
                 <input
                   type="email"
+                  name="email"
+                  autoComplete="email"
                   placeholder="Email Address"
                   className="w-full rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-white placeholder:text-slate-400 backdrop-blur-xl focus:border-cyan-400/40 focus:outline-none"
                 />
               </div>
 
               {/* Phone + Service */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input
                   type="tel"
+                  name="phone"
+                  autoComplete="tel"
                   placeholder="Phone Number"
                   className="w-full rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-white placeholder:text-slate-400 backdrop-blur-xl focus:border-cyan-400/40 focus:outline-none"
                 />
 
-                <select className="w-full rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-white backdrop-blur-xl focus:border-cyan-400/40 focus:outline-none">
-                  <option>Select Service</option>
-                  <option>Publishing</option>
-                  <option>Design</option>
-                  <option>Marketing</option>
+                <select
+                  name="service"
+                  defaultValue=""
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-white backdrop-blur-xl focus:border-cyan-400/40 focus:outline-none"
+                >
+                  <option value="" disabled>
+                    Select Service
+                  </option>
+                  <option value="publishing">Publishing</option>
+                  <option value="design">Design</option>
+                  <option value="marketing">Marketing</option>
                 </select>
               </div>
 
               {/* Message */}
               <textarea
-                rows="5"
+                rows={5}
+                name="message"
                 placeholder="Tell us about your project..."
                 className="w-full rounded-2xl border border-white/10 bg-white/5 p-3 sm:p-4 text-white placeholder:text-slate-400 backdrop-blur-xl focus:border-cyan-400/40 focus:outline-none"
               />

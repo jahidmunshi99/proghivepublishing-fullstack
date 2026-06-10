@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import SiteSettings from "../../models/SiteSettings.js";
+import { GetSiteSettings } from "../../actions/siteSettings.js";
 
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
@@ -9,7 +9,7 @@ import ScrollToTopButton from "../../components/ui/ScrollToTopButton.js";
 
 import "../globals.css";
 
-const siteInfo = await SiteSettings();
+const siteInfo = await GetSiteSettings();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

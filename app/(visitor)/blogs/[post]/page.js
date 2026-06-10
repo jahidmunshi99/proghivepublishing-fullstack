@@ -112,7 +112,7 @@ const PostPage = () => {
 
             {/* Author */}
             <div className="mt-14 flex items-center gap-4 p-6 rounded-2xl border border-white/10 bg-white/5 hover:border-white/20 transition">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#33B6EF] to-indigo-500" />
+              <div className="w-12 h-12 rounded-full bg-linear-to-b from-[#33B6EF] to-indigo-500" />
 
               <div>
                 <h4 className="font-medium">Proghive Editorial Team</h4>

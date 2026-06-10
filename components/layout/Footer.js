@@ -154,9 +154,9 @@ const Footer = ({ info }) => {
         {/* Bottom Footer */}
         <div className="border-t border-white/10">
           <div className="flex flex-col items-center justify-between gap-3 py-6 text-center md:flex-row md:text-left">
-            <p className="text-sm text-slate-500">{info.copyrightText}</p>
+            <p className="text-sm text-slate-500">{info?.copyrightText}</p>
 
-            <p className="text-sm text-slate-500">{info.developedBy}</p>
+            <p className="text-sm text-slate-500">{info?.developedBy}</p>
           </div>
         </div>
       </div>
