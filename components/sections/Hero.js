@@ -116,7 +116,7 @@ export default function Hero() {
           </div>
 
           {/* ================= RIGHT (BOX COMPLETELY REMOVED - TRANSPARENT OVER BG) ================= */}
-          <div className="">
+          <div className="hidden md:block">
             <motion.div
               style={{ y }}
               className="relative flex justify-center items-center h-140 bg-transparent"

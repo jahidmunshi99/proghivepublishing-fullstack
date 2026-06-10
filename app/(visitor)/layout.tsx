@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GetSiteSettings } from "../../actions/siteSettings.js";
-
 import Footer from "../../components/layout/Footer";
 import Header from "../../components/layout/Header";
 import ChatWidget from "../../components/ui/ChatWidget.js";
@@ -24,6 +23,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: siteInfo?.seo?.metaTitle,
   description: siteInfo?.seo?.metaDescription,
+  icons: {
+    icon: "/fabicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -41,7 +43,9 @@ export default function RootLayout({
         {children}
         <Footer info={siteInfo?.footer} />
         <ChatWidget />
-        <ScrollToTopButton />
+        <div className="hidden md:block">
+          <ScrollToTopButton />
+        </div>
       </body>
     </html>
   );
