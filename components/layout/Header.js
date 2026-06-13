@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 // import { useAuth } from "../../hooks/useAuth";
 import { Icons } from "../shared/Icons";
@@ -8,6 +9,7 @@ import { Icons } from "../shared/Icons";
 const Header = () => {
   // const { authState } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   // console.log(authState);
 
@@ -27,14 +29,14 @@ const Header = () => {
               { href: "/", label: "Home" },
               { href: "/#service", label: "Services" },
               { href: "/#portfolio", label: "Portfolio" },
-              { href: "/", label: "Blog" },
+              // { href: "/", label: "Blog" },
               { href: "/#contact", label: "Contact" },
               { href: "/about", label: "About" },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="hover:text-[#00a4fe] text-white font-medium transition relative group"
+                className={`link ${pathname === item.href ? "active" : ""} hover:text-[#00a4fe] text-white font-medium transition relative group`}
               >
                 {item.label}
                 <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#00a4fe] transition-all group-hover:w-full"></span>

@@ -101,3 +101,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.active {
+  color: #00a4fe;
+}
