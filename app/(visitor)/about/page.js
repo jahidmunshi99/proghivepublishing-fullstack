@@ -173,7 +173,7 @@ export default function AboutPage() {
               </div>
               {/* </div> */}
               {/* Right Side */}
-              <div className="md:border-l-4 border-amber-500 pl-10 mt-15 md:mt-0">
+              <div className="md:border-l-4 border-amber-500 pl-10 md:pd-0 mt-15 md:mt-0">
                 <div className="space-y-6 border-r-0">
                   <p className="text-slate-300 text-sm md:text-base leading-relaxed">
                     Jahid Munshi is a professional Book Layout Designer and
