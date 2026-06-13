@@ -46,7 +46,9 @@ const books = [
   },
 ];
 
-export default function Hero() {
+export default function Hero({ sectionInfo }) {
+  const { badge, title, highlightedText, description } = sectionInfo;
+
   const projects = useCountUp(4000);
   const clients = useCountUp(3500);
   const booksCount = useCountUp(5000);
@@ -65,19 +67,18 @@ export default function Hero() {
           {/* ================= LEFT (UNTOUCHED ORIGINAL UI) ================= */}
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm mb-6">
-              ✦ Professional Publishing Services
+              {badge}
             </div>
 
             <h1 className="font-bold leading-[1.05] text-3xl sm:text-4xl md:text-5xl lg:text-5xl">
-              Transform Your Words Into{" "}
+              {title}
               <span className="block bg-linear-to-r from-cyan-400 via-sky-400 to-indigo-500 bg-clip-text text-transparent">
-                Published Masterpieces
+                {highlightedText}
               </span>
             </h1>
 
             <p className="mt-6 text-slate-300 max-w-xl text-sm sm:text-base lg:text-lg">
-              Premium book formatting, cover design, and publishing workflow
-              crafted for modern authors and self-publishers.
+              {description}
             </p>
 
             {/* CTA */}
