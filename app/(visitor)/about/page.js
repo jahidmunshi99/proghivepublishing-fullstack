@@ -2,11 +2,12 @@
 import Image from "next/image";
 
 export default function AboutPage() {
-  const stories = [
+  const teams = [
     {
       name: "Ferdousi Akter",
       role: "Operations Manager",
-      image: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/faq.8116aa7d.svg",
+      image:
+        "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/team_members/member1.png",
       details:
         "Ferdousi is the operational backbone of Proghive Publishing. She manages project timelines, client communications, and ensures every order moves seamlessly from intake to delivery. Her organisational precision keeps the studio running at full capacity without ever compromising on quality.",
       tags: [
@@ -19,22 +20,26 @@ export default function AboutPage() {
     },
     {
       name: "Imran Hossain Nayem",
-      role: "Type Setter",
-      image: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/faq.8116aa7d.svg",
-      details: "iBOS Limited",
+      role: "Book Designer || Formatting Expert",
+      image:
+        "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/team_members/imran.jpg",
+      details:
+        "Imran leads the day-to-day production workflow at Proghive, coordinating between formatters, designers, and clients to ensure every project meets its deadline at the highest possible standard. With deep technical knowledge of book production, he mentors the team and drives continuous improvement across all service lines.",
       tags: [
-        "Project Coordination",
-        "Client Relations",
-        "Quality Assurance",
-        "Deadline Management",
-        "Reporting",
+        "Team Oversight",
+        "Workflow Design",
+        "Technical Support",
+        "Process Improvement",
+        "Production QC",
       ],
     },
     {
       name: "Mehedi Hasan",
       role: "Cover Designer",
-      image: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/faq.8116aa7d.svg",
-      details: "iBOS Limited",
+      image:
+        "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/team_members/mehedi.jpg",
+      details:
+        "Mehedi leads the day-to-day production workflow at Proghive, coordinating between formatters, designers, and clients to ensure every project meets its deadline at the highest possible standard. With deep technical knowledge of book production, he mentors the team and drives continuous improvement across all service lines.",
       tags: [
         "Project Coordination",
         "Client Relations",
@@ -106,21 +111,56 @@ export default function AboutPage() {
     "NextJS",
     "Node.js",
   ];
+  //   const platforms = [
+  //     {
+  //       name: "apple",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider1.png",
+  //     },
+  //     {
+  //       name: "kobo",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider2.png",
+  //     },
+  //     {
+  //       name: "ingramspark",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider3.png",
+  //     },
+  //     {
+  //       name: "amazon kdp",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider8.png",
+  //     },
+  //     {
+  //       name: "barner and noble",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider4.png",
+  //     },
+  //     {
+  //       name: "scribd",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider5.png",
+  //     },
+  //     {
+  //       name: "audible",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider6.png",
+  //     },
+  //     {
+  //       name: "waterstone",
+  //       link: "https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/platforms-logo/slider7.png",
+  //     },
+  //   ];
+
   return (
     <>
       <div className="bg-slate-900 py-20">
         <div className="container mx-auto">
-          {/* SECTION 1 */}
+          {/* SECTION 1 About Author */}
           <section className="py-20 px-6">
             <h2 className="text-white text-3xl md:text-4xl font-bold text-center mb-16">
               Founder & Chief Designer
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
-              <div className="relative flex justify-center items-center border-r-0 md:border-r-4 border-amber-500">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+              {/* Left Side */}
+              <div className="relative flex justify-center items-center">
                 <div className="relative w-80 h-[400px]">
                   <div className="absolute top-12 left-8 w-full h-full bg-violet-400 border-4 border-white rounded-xl rotate-3" />
-
                   <Image
                     src="https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/jahid%20munshi.jpg"
                     alt="Jahid Munshi"
@@ -131,57 +171,63 @@ export default function AboutPage() {
                   />
                 </div>
               </div>
-
-              <div className="space-y-6">
-                <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                  Jahid Munshi is a professional Book Layout Designer and
-                  Publishing Specialist who has been shaping the self-publishing
-                  industry since 2018. What started as a personal passion for
-                  typography and print craft evolved into Proghive Publishing —
-                  a full-service studio trusted by thousands of authors
-                  worldwide.
-                </p>
-
-                <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                  With deep technical mastery across every major publishing
-                  platform — from Amazon KDP and IngramSpark to Apple Books and
-                  Kobo — Jahid brings an uncompromising eye for detail to every
-                  project. He personally oversees quality control on every book
-                  that leaves the studio, ensuring each file meets both platform
-                  specifications and the highest aesthetic standards.
-                </p>
-
-                <div>
-                  <h3 className="font-bold text-lg text-[#07A8ED]">
-                    Jahid Munshi
-                  </h3>
-                  <p className="text-slate-400 text-sm">
-                    Founder of Proghive Publishing
+              {/* </div> */}
+              {/* Right Side */}
+              <div className="md:border-l-4 border-amber-500 pl-10 mt-15 md:mt-0">
+                <div className="space-y-6 border-r-0">
+                  <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                    Jahid Munshi is a professional Book Layout Designer and
+                    Publishing Specialist who has been shaping the
+                    self-publishing industry since 2018. What started as a
+                    personal passion for typography and print craft evolved into
+                    Proghive Publishing — a full-service studio trusted by
+                    thousands of authors worldwide.
                   </p>
-                </div>
 
-                <h4 className="text-white font-semibold">Expertise & Tools</h4>
+                  <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                    With deep technical mastery across every major publishing
+                    platform — from Amazon KDP and IngramSpark to Apple Books
+                    and Kobo — Jahid brings an uncompromising eye for detail to
+                    every project. He personally oversees quality control on
+                    every book that leaves the studio, ensuring each file meets
+                    both platform specifications and the highest aesthetic
+                    standards.
+                  </p>
 
-                <div className="flex flex-wrap gap-3">
-                  {skills.map((skill) => (
-                    <div
-                      key={skill}
-                      className="bg-slate-800/50 border border-slate-700 px-4 py-2 rounded-lg text-slate-200 text-sm"
-                    >
-                      {skill}
-                    </div>
-                  ))}
+                  <div>
+                    <h3 className="font-bold text-lg text-[#07A8ED]">
+                      Jahid Munshi
+                    </h3>
+                    <p className="text-slate-400 text-sm">
+                      Founder of Proghive Publishing
+                    </p>
+                  </div>
+
+                  <h4 className="text-white font-semibold">
+                    Expertise & Tools
+                  </h4>
+
+                  <div className="flex flex-wrap gap-3">
+                    {skills.map((skill) => (
+                      <div
+                        key={skill}
+                        className="bg-slate-800/50 border border-slate-700 px-4 py-2 rounded-lg text-slate-200 text-sm"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* SECTION 2 */}
-          <section className="bg-[#0f172a] py-20 px-6">
+          {/* SECTION 2 Team Members */}
+          <section className="py-24 px-6">
             <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-16 opacity-0 animate-fadeIn">
+              <div className="text-center mb-16">
                 <Image
-                  src="https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/faq.8116aa7d.svg"
+                  src="https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/peep1.f4841716.svg"
                   alt="icon"
                   width={96}
                   height={96}
@@ -195,56 +241,72 @@ export default function AboutPage() {
                 </h2>
 
                 <p className="text-slate-400">
-                  Behind every perfectly formatted book is a dedicated team.
+                  Behind every perfectly formatted book is a dedicated team
+                  member who cares as much about your book as you do.
                 </p>
               </div>
-
-              {/* CARDS */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {stories.map((story, index) => (
-                  <div
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                {teams.map((member, index) => (
+                  <article
                     key={index}
-                    className="group relative bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl overflow-hidden hover:border-indigo-500/50 hover:shadow-2xl transition-all duration-300 opacity-0 animate-fadeUp"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="group relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-400/40 hover:shadow-[0_20px_60px_rgba(0,255,255,0.12)]
+          "
                   >
-                    <Image
-                      src={story.image}
-                      alt={story.name}
-                      width={500}
-                      height={300}
-                      loading="lazy"
-                      className="h-44 w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    {/* IMAGE */}
+                    <div className="relative overflow-hidden isolate">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={500}
+                        height={500}
+                        className="w-full h-80 object-cover object-top transition-transform duration-500 group-hover:scale-100 will-change-transform
+    "
+                      />
 
-                    <div className="p-5 space-y-4">
-                      <div>
-                        <h3 className="text-white font-semibold text-lg">
-                          {story.name}
-                        </h3>
+                      {/* overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent pointer-events-none" />
+                    </div>
 
-                        <p className="text-indigo-400 text-sm">{story.role}</p>
-                      </div>
+                    {/* CONTENT */}
+                    <div className="p-6 text-left">
+                      <h3 className="text-white text-xl font-semibold mb-1">
+                        {member.name}
+                      </h3>
 
-                      <p className="text-slate-400 text-sm">{story.details}</p>
+                      <p className="text-cyan-300 text-sm mb-4">
+                        {member.role}
+                      </p>
 
+                      <p className="text-slate-300 text-sm leading-relaxed mb-5">
+                        {member.details}
+                      </p>
+
+                      {/* TAGS */}
                       <div className="flex flex-wrap gap-2">
-                        {story.tags.map((tag) => (
+                        {member.tags.slice(0, 4).map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 text-[11px] uppercase rounded-full bg-slate-800 text-slate-300"
+                            className="
+                    px-3 py-1 text-xs
+                    rounded-full
+                    bg-white/5
+                    border border-white/10
+                    text-slate-200
+                    backdrop-blur-md
+                  "
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </article>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* SECTION 3 */}
+          {/* SECTION 3 service process*/}
           <section className="bg-[#0f172a] py-20 px-6">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
@@ -326,136 +388,90 @@ export default function AboutPage() {
               </div>
             </div>
           </section>
-          {/* SECTION 4 */}
-          <section class="py-14">
-            <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center reveal">
-              <p class="text-xs font-bold text-slate-400 uppercase tracking-[.18em] mb-8">
+          {/* SECTION 4 Platforms Logo  */}
+          {/* <section className="py-14">
+            <div className="max-w-5xl mx-auto px-5 sm:px-8 text-center reveal">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-[.18em] mb-8">
                 Publishing Platforms We Work With
               </p>
-              <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">📦</span>
-                  <span class="font-semibold text-sm">Amazon KDP</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">📚</span>
-                  <span class="font-semibold text-sm">IngramSpark</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">🍎</span>
-                  <span class="font-semibold text-sm">Apple Books</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">📖</span>
-                  <span class="font-semibold text-sm">Kobo</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">🏬</span>
-                  <span class="font-semibold text-sm">Barnes &amp; Noble</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">📕</span>
-                  <span class="font-semibold text-sm">Lulu</span>
-                </div>
-                <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
-                  <span class="text-xl">📗</span>
-                  <span class="font-semibold text-sm">Draft2Digital</span>
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+                <div className="flex items-center gap-10 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+                  {platforms.map((icon, index) => (
+                    <Image
+                      key={index}
+                      width={150}
+                      height={200}
+                      src={icon.link}
+                      alt={icon.name}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
-          {/* SECTION 5 */}
-          <div className="max-w-7xl mx-auto px-5 sm:px-8 mb-10 text-center">
-            <Image
-              src="https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/faq.8116aa7d.svg"
-              alt="icon"
-              width={96}
-              height={96}
-              priority
-              style={{ height: "auto" }}
-              className="mx-auto mb-6"
-            />
-            <div className="text-indigo-400 text-sm flex items-center justify-center gap-2">
-              <span className="w-4 h-px bg-indigo-400" />
-              What Authors Say About the Team
+          {/* SECTION 5 review*/}
+          <section>
+            <div className="max-w-7xl mx-auto px-5 sm:px-8 mb-10 text-center">
+              <Image
+                src="https://filedn.com/lOXfwotSB8GQBNP1sHCYqFX/faq.8116aa7d.svg"
+                alt="icon"
+                width={96}
+                height={96}
+                priority
+                className="mx-auto h-auto mb-6"
+              />
+              <div className="text-indigo-400 text-sm flex items-center justify-center gap-2">
+                <span className="w-4 h-px bg-indigo-400" />
+                What Authors Say About the Team
+              </div>
+
+              <h2 className="text-white text-3xl md:text-4xl font-bold mt-2">
+                Trusted by Authors Worldwide
+              </h2>
             </div>
 
-            <h2 className="text-white text-3xl md:text-4xl font-bold mt-2">
-              Trusted by Authors Worldwide
-            </h2>
-          </div>
+            {/* CARDS */}
+            <div className="relative px-5 sm:px-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto pb-4 scroll-smooth">
+                {testimonials.map((t, i) => (
+                  <div
+                    key={i}
+                    className="shrink-0 rounded-2xl p-5 border border-slate-800 bg-[#182234]"
+                  >
+                    <div className="text-yellow-400 text-sm mb-3">★★★★★</div>
 
-          {/* CARDS */}
-          <div className="relative px-5 sm:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-x-auto pb-4 scroll-smooth">
-              {testimonials.map((t, i) => (
-                <div
-                  key={i}
-                  className="shrink-0 rounded-2xl p-5 border border-slate-800 bg-slate-900"
-                >
-                  <div className="text-yellow-400 text-sm mb-3">★★★★★</div>
+                    <p className="text-slate-400 text-sm leading-relaxed italic mb-5">
+                      "{t.quote}"
+                    </p>
 
-                  <p className="text-slate-400 text-sm leading-relaxed italic mb-5">
-                    "{t.quote}"
-                  </p>
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xs bg-gradient-to-br ${t.color}`}
+                      >
+                        {t.init}
+                      </div>
 
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xs bg-gradient-to-br ${t.color}`}
-                    >
-                      {t.init}
-                    </div>
-
-                    <div>
-                      <p className="text-white font-semibold text-sm">
-                        {t.name}
-                      </p>
-                      <p className="text-slate-500 text-xs">{t.role}</p>
+                      <div>
+                        <p className="text-white font-semibold text-sm">
+                          {t.name}
+                        </p>
+                        <p className="text-slate-500 text-xs">{t.role}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            <div className="text-center mt-16">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-semibold transition-all">
-                Check More
-              </button>
+              <div className="text-center mt-16">
+                <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-semibold transition-all">
+                  See More ...
+                </button>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
-      {/* ANIMATION STYLES */}
-      <style jsx>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .animate-fadeUp {
-          animation: fadeUp 0.6s ease forwards;
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease forwards;
-        }
-      `}</style>
     </>
   );
 }
