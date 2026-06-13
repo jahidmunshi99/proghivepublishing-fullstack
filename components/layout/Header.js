@@ -27,8 +27,9 @@ const Header = () => {
               { href: "/", label: "Home" },
               { href: "/#service", label: "Services" },
               { href: "/#portfolio", label: "Portfolio" },
-              { href: "/blog", label: "Blog" },
+              { href: "/", label: "Blog" },
               { href: "/#contact", label: "Contact" },
+              { href: "/about", label: "About" },
             ].map((item) => (
               <Link
                 key={item.href}

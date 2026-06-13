@@ -1,0 +1,952 @@
+
+
+<style>
+  /* ── Global resets ─────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-family: 'Plus Jakarta Sans', sans-serif; }
+  body { background: #f8fafc; color: #0f172a; overflow-x: hidden; }
+
+  /* ── Scrollbar ──────────────────────────────────── */
+  ::-webkit-scrollbar          { width: 5px; }
+  ::-webkit-scrollbar-track    { background: #e2e8f0; }
+  ::-webkit-scrollbar-thumb    { background: #6366f1; border-radius: 4px; }
+
+  /* ── Stamp ring ─────────────────────────────────── */
+  .stamp-ring {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    border: 2px dashed rgba(99,102,241,.45);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .stamp-ring::before {
+    content: 'EST · 2018 · BANGLADESH ·';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6.5px; font-weight: 700; letter-spacing: .24em;
+    text-transform: uppercase; color: rgba(99,102,241,.6);
+    /* SVG text-on-a-path lives below; this fallback shows on fallback */
+    display: none;
+  }
+
+  /* ── Noise overlay (subtle texture) ─────────────── */
+  .noise::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+    pointer-events: none; border-radius: inherit;
+  }
+
+  /* ── Photo frame ─────────────────────────────────── */
+  .photo-frame {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,.28), 0 0 0 1px rgba(255,255,255,.1);
+  }
+  .photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Team card hover border glow ─────────────────── */
+  .team-card { transition: transform .3s ease, box-shadow .3s ease; }
+  .team-card:hover { transform: translateY(-6px); }
+
+  /* ── Skill pill ──────────────────────────────────── */
+  .skill-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 11px; border-radius: 100px;
+    font-size: .7rem; font-weight: 600; letter-spacing: .03em;
+  }
+
+  /* ── Timeline line ───────────────────────────────── */
+  .timeline-item { position: relative; padding-left: 2.5rem; }
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: .6rem; top: 1.6rem; bottom: -1.5rem;
+    width: 1px; background: linear-gradient(180deg,#818cf8,transparent);
+  }
+  .timeline-item:last-child::before { display: none; }
+  .timeline-dot {
+    position: absolute; left: 0; top: .3rem;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: linear-gradient(135deg,#4f46e5,#7c3aed);
+    box-shadow: 0 0 14px rgba(99,102,241,.45);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #fff; font-weight: 800;
+  }
+
+  /* ── Section tag ─────────────────────────────────── */
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: .72rem; font-weight: 700; letter-spacing: .13em;
+    text-transform: uppercase; color: #4f46e5; margin-bottom: .6rem;
+  }
+  .section-tag::before {
+    content: ''; width: 18px; height: 1.5px;
+    background: #4f46e5; border-radius: 2px;
+  }
+
+  /* ── Value card ──────────────────────────────────── */
+  .value-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 1.75rem 1.5rem;
+    transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .value-card:hover {
+    border-color: #a5b4fc;
+    box-shadow: 0 8px 32px rgba(79,70,229,.1);
+    transform: translateY(-3px);
+  }
+
+  /* ── Reveal animation trigger ────────────────────── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .32s; }
+</style>
+
+
+<body class="bg-slate-50 font-sans antialiased">
+
+<!-- ═══════════════════════════════════════════════════
+     HERO — ABOUT
+════════════════════════════════════════════════════ -->
+<section class="relative min-h-[78vh] flex items-center overflow-hidden bg-slate-950 noise">
+  <!-- Background layers -->
+  <div class="absolute inset-0 bg-mesh-dark pointer-events-none"></div>
+  <div class="absolute inset-0 bg-dot-grid bg-dot-md opacity-30 pointer-events-none"></div>
+  <!-- Orbs -->
+  <div class="absolute top-1/3 right-1/4 w-[480px] h-[480px] rounded-full pointer-events-none"
+       style="background:rgba(79,70,229,.14);filter:blur(90px)"></div>
+  <div class="absolute bottom-1/4 left-1/5 w-72 h-72 rounded-full pointer-events-none"
+       style="background:rgba(6,182,212,.1);filter:blur(70px)"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-36 pb-24 w-full">
+    <div class="max-w-3xl mx-auto text-center">
+
+      <!-- Eyebrow -->
+      <div class="inline-flex items-center gap-2 text-xs font-bold tracking-[.14em] uppercase
+                  text-indigo-400 bg-indigo-950/80 border border-indigo-800/70 rounded-full
+                  px-4 py-1.5 mb-7 animate-fade-in">
+        <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+        The People Behind Every Perfectly Published Book
+      </div>
+
+      <h1 class="font-display font-black text-white leading-[1.07] mb-6 animate-fade-up"
+          style="font-size:clamp(2.5rem,5.5vw,4.2rem)">
+        We Turn Authors Into
+        <span class="block mt-1"
+              style="background:linear-gradient(135deg,#818cf8 0%,#a78bfa 40%,#22d3ee 100%);
+                     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+                     background-clip:text">Published Professionals</span>
+      </h1>
+
+      <p class="text-slate-400 text-lg leading-[1.75] max-w-2xl mx-auto mb-10 animate-fade-up"
+         style="animation-delay:.12s">
+        Proghive Publishing was built on a single belief: every author deserves a book that looks as good as it reads. Since 2018, our small but dedicated team has transformed over 4,000 manuscripts into beautifully formatted, globally distributed books.
+      </p>
+
+      <!-- Quick stats -->
+      <div class="flex flex-wrap justify-center gap-x-10 gap-y-5 animate-fade-up" style="animation-delay:.22s">
+        <div class="text-center">
+          <p class="font-display font-black text-3xl text-white leading-none">4,000+</p>
+          <p class="text-slate-500 text-xs mt-1 tracking-wide uppercase font-medium">Books Formatted</p>
+        </div>
+        <div class="w-px h-10 bg-slate-800 self-center hidden sm:block"></div>
+        <div class="text-center">
+          <p class="font-display font-black text-3xl text-white leading-none">3,500+</p>
+          <p class="text-slate-500 text-xs mt-1 tracking-wide uppercase font-medium">Happy Authors</p>
+        </div>
+        <div class="w-px h-10 bg-slate-800 self-center hidden sm:block"></div>
+        <div class="text-center">
+          <p class="font-display font-black text-3xl text-white leading-none">60+</p>
+          <p class="text-slate-500 text-xs mt-1 tracking-wide uppercase font-medium">Countries Served</p>
+        </div>
+        <div class="w-px h-10 bg-slate-800 self-center hidden sm:block"></div>
+        <div class="text-center">
+          <p class="font-display font-black text-3xl text-white leading-none">8 Yrs</p>
+          <p class="text-slate-500 text-xs mt-1 tracking-wide uppercase font-medium">Publishing Expertise</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 inset-x-0 h-28 pointer-events-none"
+       style="background:linear-gradient(to bottom,transparent,#f8fafc)"></div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOUNDER SECTION — JAHID MUNSHI
+════════════════════════════════════════════════════ -->
+<section class="py-28 bg-slate-50 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <!-- Label -->
+    <div class="section-tag reveal">Founder &amp; Chief Designer</div>
+
+    <div class="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+
+      <!-- ── LEFT: Photo block ── -->
+      <div class="relative reveal" style="transition-delay:.08s">
+
+        <!-- Large decorative ring (desktop) -->
+        <div class="absolute -top-10 -left-10 w-64 h-64 rounded-full border border-dashed border-indigo-200 opacity-60 animate-spin-slow pointer-events-none hidden lg:block"></div>
+        <div class="absolute -bottom-8 -right-8 w-40 h-40 rounded-full border border-dashed border-cyan-300/50 animate-spin-slow pointer-events-none hidden lg:block" style="animation-direction:reverse;animation-duration:12s"></div>
+
+        <!-- Photo card -->
+        <div class="relative z-10 max-w-sm mx-auto lg:mx-0">
+
+          <!-- Main photo frame -->
+          <div class="photo-frame bg-gradient-to-br from-indigo-100 to-violet-100" style="height:420px">
+            <!-- Gradient placeholder that looks like a real photo composition -->
+            <div class="absolute inset-0"
+                 style="background:linear-gradient(145deg,#1e1b4b 0%,#312e81 30%,#4338ca 60%,#1e40af 100%)"></div>
+            <!-- Avatar initials (replaces photo) -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <div class="w-28 h-28 rounded-full border-4 border-white/20 flex items-center justify-center"
+                   style="background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.05));backdrop-filter:blur(8px)">
+                <span class="font-display font-black text-white text-4xl select-none">JM</span>
+              </div>
+              <p class="text-indigo-200/70 text-xs tracking-[.2em] uppercase font-medium">Jahid Munshi</p>
+            </div>
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0"
+                 style="background:linear-gradient(to top,rgba(10,10,30,.7) 0%,transparent 55%)"></div>
+            <!-- Name overlay at bottom -->
+            <div class="absolute bottom-0 inset-x-0 px-6 pb-5">
+              <p class="font-display font-bold text-white text-xl leading-tight">Jahid Munshi</p>
+              <p class="text-indigo-300 text-sm mt-0.5 font-medium">Founder &amp; Chief Book Formatter</p>
+            </div>
+          </div>
+
+          <!-- Floating badge — experience -->
+          <div class="absolute -right-5 top-10 bg-white rounded-2xl shadow-card px-4 py-3.5 flex items-center gap-3 border border-slate-100 z-20 animate-float">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                 style="background:linear-gradient(135deg,#4f46e5,#7c3aed)">
+              <span class="text-white text-lg">📚</span>
+            </div>
+            <div>
+              <p class="font-display font-black text-slate-900 text-lg leading-none">8+ Yrs</p>
+              <p class="text-slate-500 text-[11px] mt-0.5 font-medium">Publishing Expert</p>
+            </div>
+          </div>
+
+          <!-- Floating badge — rating -->
+          <div class="absolute -left-4 bottom-16 bg-white rounded-2xl shadow-card px-4 py-3 flex items-center gap-3 border border-slate-100 z-20 animate-float" style="animation-delay:1.8s">
+            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
+            <div>
+              <p class="font-display font-bold text-slate-900 text-sm leading-none">4.9 / 5</p>
+              <p class="text-slate-500 text-[10px] mt-0.5">Average Rating</p>
+            </div>
+          </div>
+
+          <!-- Since stamp -->
+          <div class="absolute -bottom-5 right-6 z-20">
+            <div class="w-20 h-20 rounded-full border-2 border-dashed border-indigo-400 flex flex-col items-center justify-center bg-white shadow-card">
+              <p class="text-[8px] font-bold tracking-[.15em] uppercase text-indigo-400">Est.</p>
+              <p class="font-display font-black text-indigo-600 text-base leading-tight">2018</p>
+              <p class="text-[7px] font-bold tracking-[.1em] uppercase text-indigo-400">BD</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Bio ── -->
+      <div class="reveal reveal-delay-2">
+
+        <h2 class="font-display font-black text-slate-900 leading-[1.1] mb-4"
+            style="font-size:clamp(1.9rem,3.5vw,3rem)">
+          The Craftsman<br/>
+          <em class="not-italic" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Behind Every Book</em>
+        </h2>
+
+        <p class="text-slate-600 text-base leading-[1.85] mb-4">
+          Jahid Munshi is a professional Book Layout Designer and Publishing Specialist who has been shaping the self-publishing industry since 2018. What started as a personal passion for typography and print craft evolved into <strong class="font-semibold text-slate-800">Proghive Publishing</strong> — a full-service studio trusted by thousands of authors worldwide.
+        </p>
+        <p class="text-slate-600 text-base leading-[1.85] mb-7">
+          With deep technical mastery across every major publishing platform — from Amazon KDP and IngramSpark to Apple Books and Kobo — Jahid brings an uncompromising eye for detail to every project. He personally oversees quality control on every book that leaves the studio, ensuring each file meets both platform specifications and the highest aesthetic standards.
+        </p>
+
+        <!-- Skills grid -->
+        <div class="mb-7">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Expertise &amp; Tools</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-pill bg-indigo-50 text-indigo-700 border border-indigo-100">📖 Amazon KDP</span>
+            <span class="skill-pill bg-violet-50 text-violet-700 border border-violet-100">🏪 IngramSpark</span>
+            <span class="skill-pill bg-cyan-50 text-cyan-700 border border-cyan-100">📱 EPUB 3.0</span>
+            <span class="skill-pill bg-rose-50 text-rose-700 border border-rose-100">🎨 InDesign</span>
+            <span class="skill-pill bg-amber-50 text-amber-700 border border-amber-100">✏️ Photoshop</span>
+            <span class="skill-pill bg-emerald-50 text-emerald-700 border border-emerald-100">🔖 Calibre</span>
+            <span class="skill-pill bg-slate-100 text-slate-700 border border-slate-200">⚡ Kindle Create</span>
+            <span class="skill-pill bg-indigo-50 text-indigo-700 border border-indigo-100">💻 HTML / CSS</span>
+            <span class="skill-pill bg-violet-50 text-violet-700 border border-violet-100">⚛️ React</span>
+            <span class="skill-pill bg-cyan-50 text-cyan-700 border border-cyan-100">🟢 Node.js</span>
+          </div>
+        </div>
+
+        <!-- Highlights row -->
+        <div class="grid grid-cols-3 gap-3 mb-8">
+          <div class="bg-white rounded-xl border border-slate-100 p-4 text-center shadow-card">
+            <p class="font-display font-black text-2xl text-indigo-600 leading-none">4K+</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">Projects</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-100 p-4 text-center shadow-card">
+            <p class="font-display font-black text-2xl text-indigo-600 leading-none">10+</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">Bestsellers</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-100 p-4 text-center shadow-card">
+            <p class="font-display font-black text-2xl text-indigo-600 leading-none">60+</p>
+            <p class="text-slate-500 text-[11px] mt-1 font-medium">Countries</p>
+          </div>
+        </div>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white shadow-brand transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+             style="background:linear-gradient(135deg,#4f46e5,#7c3aed)">
+            Work With Jahid →
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-indigo-600 border border-indigo-200 bg-indigo-50 hover:bg-indigo-100 transition-all duration-200">
+            💼 LinkedIn Profile
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     JOURNEY TIMELINE
+════════════════════════════════════════════════════ -->
+<section class="py-20 bg-white overflow-hidden">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-14 reveal">
+      <div class="section-tag justify-center">The Journey</div>
+      <h2 class="font-display font-bold text-slate-900 text-3xl md:text-4xl mt-1">
+        From Passion to Platform
+      </h2>
+      <p class="text-slate-500 text-base mt-3 max-w-xl mx-auto leading-relaxed">
+        Every great publishing house has an origin story. Here's ours.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-x-16 gap-y-2">
+
+      <!-- Timeline items left -->
+      <div class="space-y-8">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot">1</div>
+          <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1.5">2018</p>
+          <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">The First Formatted Book</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Jahid formatted his first professional title for a self-publishing author in Dhaka. The experience sparked a vision: every author deserves world-class formatting, regardless of budget.</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-dot">3</div>
+          <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1.5">2020</p>
+          <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">500 Projects Milestone</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Word spread. Authors from the US, UK, and Canada began seeking out Proghive's work. The 500-project milestone was crossed, with a 4.9-star average across all platforms.</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-dot">5</div>
+          <p class="text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1.5">2022</p>
+          <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">First Bestseller Produced</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">A Proghive-formatted title reached Amazon's #1 in its category — the first of over 10 bestsellers the studio would help produce in the years that followed.</p>
+        </div>
+      </div>
+
+      <!-- Timeline items right -->
+      <div class="space-y-8 sm:mt-14">
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-dot">2</div>
+          <p class="text-xs font-bold text-violet-500 uppercase tracking-widest mb-1.5">2019</p>
+          <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">Going International</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">The first international clients arrived from the United States and United Kingdom. Proghive expanded its service offering to include IngramSpark, EPUB, and Kindle eBook formatting.</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-dot">4</div>
+          <p class="text-xs font-bold text-violet-500 uppercase tracking-widest mb-1.5">2021</p>
+          <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">Team Expansion</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Ferdousi Akter joined as Operations Manager and Imran Hossain Nayem stepped in as Team Leader — growing Proghive into a full studio capable of handling larger, multi-format projects.</p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-3">
+          <div class="timeline-dot">6</div>
+          <p class="text-xs font-bold text-violet-500 uppercase tracking-widest mb-1.5">2025 — Today</p>
+          <h3 class="font-display font-bold text-slate-900 text-base mb-1.5">4,000+ Books &amp; Growing</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Proghive Publishing now serves authors in 60+ countries with a team of specialists, a published portfolio of bestsellers, and an unwavering commitment to craft.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TEAM — Ferdousi & Nayem
+════════════════════════════════════════════════════ -->
+<section class="py-28 overflow-hidden" style="background:linear-gradient(180deg,#f8fafc 0%,#eef2ff 100%)">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <div class="section-tag justify-center">The Team</div>
+      <h2 class="font-display font-bold text-slate-900 text-3xl md:text-4xl mt-1">
+        Small Team, Exceptional Output
+      </h2>
+      <p class="text-slate-500 text-base mt-3 max-w-xl mx-auto leading-relaxed">
+        Behind every perfectly formatted book is a dedicated team member who cares as much about your book as you do.
+      </p>
+    </div>
+
+    <!-- ── TEAM CARDS ── -->
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+      <!-- ── CARD 1: Ferdousi Akter — Manager ── -->
+      <div class="team-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-card reveal reveal-delay-1">
+        <!-- Photo block -->
+        <div class="relative h-72 overflow-hidden"
+             style="background:linear-gradient(145deg,#0c4a6e 0%,#075985 40%,#0369a1 70%,#0e7490 100%)">
+          <!-- Noise overlay -->
+          <div class="absolute inset-0 opacity-[.04]"
+               style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.65%22 numOctaves=%224%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')"></div>
+          <!-- Decorative circles -->
+          <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full border border-white/10"></div>
+          <div class="absolute -bottom-8 -left-8 w-36 h-36 rounded-full border border-white/8"></div>
+          <!-- Avatar -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <div class="w-24 h-24 rounded-full border-2 border-white/20 flex items-center justify-center mb-3"
+                 style="background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06));backdrop-filter:blur(10px)">
+              <span class="font-display font-black text-white text-3xl select-none">FA</span>
+            </div>
+            <div class="text-center">
+              <p class="font-display font-bold text-white text-lg leading-none">Ferdousi Akter</p>
+              <p class="text-sky-300 text-sm mt-1 font-medium">Operations Manager</p>
+            </div>
+          </div>
+          <!-- Role chip -->
+          <div class="absolute top-4 right-4 flex items-center gap-1.5 bg-white/10 backdrop-blur border border-white/15 rounded-full px-3 py-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-white text-[11px] font-semibold tracking-wide">Available</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="px-7 py-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-display font-bold text-slate-900 text-xl leading-tight">Ferdousi Akter</h3>
+              <p class="text-sky-600 font-semibold text-sm mt-0.5">Operations Manager</p>
+            </div>
+            <!-- Social mini icons -->
+            <div class="flex gap-1.5">
+              <a href="#" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-sky-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-sky-600 text-xs transition-colors">in</a>
+              <a href="#" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-indigo-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-indigo-600 text-xs transition-colors">𝕏</a>
+            </div>
+          </div>
+
+          <p class="text-slate-600 text-sm leading-[1.8] mb-5">
+            Ferdousi is the operational backbone of Proghive Publishing. She manages project timelines, client communications, and ensures every order moves seamlessly from intake to delivery. Her organisational precision keeps the studio running at full capacity without ever compromising on quality.
+          </p>
+
+          <!-- Skills -->
+          <div class="mb-5">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2.5">Responsibilities</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="skill-pill bg-sky-50 text-sky-700 border border-sky-100">🗂 Project Coordination</span>
+              <span class="skill-pill bg-slate-100 text-slate-600 border border-slate-200">📧 Client Relations</span>
+              <span class="skill-pill bg-emerald-50 text-emerald-700 border border-emerald-100">✅ Quality Assurance</span>
+              <span class="skill-pill bg-sky-50 text-sky-700 border border-sky-100">⏱ Deadline Management</span>
+              <span class="skill-pill bg-violet-50 text-violet-700 border border-violet-100">📊 Reporting</span>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-2 pt-4 border-t border-slate-100">
+            <div class="text-center">
+              <p class="font-display font-black text-lg text-slate-900 leading-none">98%</p>
+              <p class="text-slate-400 text-[10px] mt-0.5 font-medium">On-time Rate</p>
+            </div>
+            <div class="text-center border-x border-slate-100">
+              <p class="font-display font-black text-lg text-slate-900 leading-none">4+ Yrs</p>
+              <p class="text-slate-400 text-[10px] mt-0.5 font-medium">With Proghive</p>
+            </div>
+            <div class="text-center">
+              <p class="font-display font-black text-lg text-slate-900 leading-none">2K+</p>
+              <p class="text-slate-400 text-[10px] mt-0.5 font-medium">Orders Managed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── CARD 2: Imran Hossain Nayem — Team Leader ── -->
+      <div class="team-card bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-card reveal reveal-delay-2">
+        <!-- Photo block -->
+        <div class="relative h-72 overflow-hidden"
+             style="background:linear-gradient(145deg,#1e1b4b 0%,#3730a3 40%,#4338ca 70%,#4f46e5 100%)">
+          <!-- Noise -->
+          <div class="absolute inset-0 opacity-[.04]"
+               style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.65%22 numOctaves=%224%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')"></div>
+          <!-- Decorative -->
+          <div class="absolute -top-10 -left-10 w-44 h-44 rounded-full border border-white/10"></div>
+          <div class="absolute -bottom-10 -right-10 w-40 h-40 rounded-full border border-white/8"></div>
+          <!-- Avatar -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <div class="w-24 h-24 rounded-full border-2 border-white/20 flex items-center justify-center mb-3"
+                 style="background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.06));backdrop-filter:blur(10px)">
+              <span class="font-display font-black text-white text-3xl select-none">IN</span>
+            </div>
+            <div class="text-center">
+              <p class="font-display font-bold text-white text-lg leading-none">Imran H. Nayem</p>
+              <p class="text-indigo-300 text-sm mt-1 font-medium">Team Leader</p>
+            </div>
+          </div>
+          <!-- Role chip -->
+          <div class="absolute top-4 right-4 flex items-center gap-1.5 bg-white/10 backdrop-blur border border-white/15 rounded-full px-3 py-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-white text-[11px] font-semibold tracking-wide">Available</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="px-7 py-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h3 class="font-display font-bold text-slate-900 text-xl leading-tight">Imran Hossain Nayem</h3>
+              <p class="text-indigo-600 font-semibold text-sm mt-0.5">Team Leader</p>
+            </div>
+            <div class="flex gap-1.5">
+              <a href="#" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-indigo-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-indigo-600 text-xs transition-colors">in</a>
+              <a href="#" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-indigo-100 border border-slate-200 flex items-center justify-center text-slate-500 hover:text-indigo-600 text-xs transition-colors">𝕏</a>
+            </div>
+          </div>
+
+          <p class="text-slate-600 text-sm leading-[1.8] mb-5">
+            Imran leads the day-to-day production workflow at Proghive, coordinating between formatters, designers, and clients to ensure every project meets its deadline at the highest possible standard. With deep technical knowledge of book production, he mentors the team and drives continuous improvement across all service lines.
+          </p>
+
+          <!-- Skills -->
+          <div class="mb-5">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2.5">Responsibilities</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="skill-pill bg-indigo-50 text-indigo-700 border border-indigo-100">👥 Team Oversight</span>
+              <span class="skill-pill bg-violet-50 text-violet-700 border border-violet-100">🔍 Production QC</span>
+              <span class="skill-pill bg-slate-100 text-slate-600 border border-slate-200">📐 Workflow Design</span>
+              <span class="skill-pill bg-indigo-50 text-indigo-700 border border-indigo-100">🛠 Technical Support</span>
+              <span class="skill-pill bg-emerald-50 text-emerald-700 border border-emerald-100">📈 Process Improvement</span>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-2 pt-4 border-t border-slate-100">
+            <div class="text-center">
+              <p class="font-display font-black text-lg text-slate-900 leading-none">100%</p>
+              <p class="text-slate-400 text-[10px] mt-0.5 font-medium">Delivery Rate</p>
+            </div>
+            <div class="text-center border-x border-slate-100">
+              <p class="font-display font-black text-lg text-slate-900 leading-none">4+ Yrs</p>
+              <p class="text-slate-400 text-[10px] mt-0.5 font-medium">With Proghive</p>
+            </div>
+            <div class="text-center">
+              <p class="font-display font-black text-lg text-slate-900 leading-none">1.5K+</p>
+              <p class="text-slate-400 text-[10px] mt-0.5 font-medium">Books Led</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- Hiring nudge -->
+    <div class="mt-12 text-center reveal">
+      <p class="text-slate-500 text-sm">
+        Interested in joining the team?
+        <a href="#" class="text-indigo-600 font-semibold hover:underline ml-1">We're always looking for talented formatters →</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CORE VALUES
+════════════════════════════════════════════════════ -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="text-center mb-14 reveal">
+      <div class="section-tag justify-center">What We Stand For</div>
+      <h2 class="font-display font-bold text-slate-900 text-3xl md:text-4xl mt-1">
+        Our Core Values
+      </h2>
+      <p class="text-slate-500 text-base mt-3 max-w-lg mx-auto">
+        Four principles that guide every book, every client, every decision we make.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="value-card reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4"
+             style="background:linear-gradient(135deg,rgba(79,70,229,.12),rgba(124,58,237,.08))">
+          🎯
+        </div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-2">Precision First</h3>
+        <p class="text-slate-500 text-sm leading-[1.75]">
+          Every margin, glyph, and embed is checked twice. Platform compliance is not optional — it is the starting point.
+        </p>
+      </div>
+
+      <div class="value-card reveal reveal-delay-1">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4"
+             style="background:linear-gradient(135deg,rgba(6,182,212,.1),rgba(8,145,178,.07))">
+          🤝
+        </div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-2">Author Partnership</h3>
+        <p class="text-slate-500 text-sm leading-[1.75]">
+          We don't process orders — we collaborate on books. Your creative vision is the brief; we are the technical execution.
+        </p>
+      </div>
+
+      <div class="value-card reveal reveal-delay-2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4"
+             style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.07))">
+          ⚡
+        </div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-2">Reliable Speed</h3>
+        <p class="text-slate-500 text-sm leading-[1.75]">
+          Launch timelines matter. Standard turnaround is 3–5 days; rush delivery in 24–48 hrs — without sacrificing quality.
+        </p>
+      </div>
+
+      <div class="value-card reveal reveal-delay-3">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4"
+             style="background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(217,119,6,.07))">
+          📈
+        </div>
+        <h3 class="font-display font-bold text-slate-900 text-base mb-2">Continuous Growth</h3>
+        <p class="text-slate-500 text-sm leading-[1.75]">
+          Publishing standards evolve. We invest in staying ahead — new tools, new specs, new skills — so your book stays competitive.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PLATFORM LOGOS STRIP
+════════════════════════════════════════════════════ -->
+<section class="py-14 bg-slate-50 border-y border-slate-100">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center reveal">
+    <p class="text-xs font-bold text-slate-400 uppercase tracking-[.18em] mb-8">Publishing Platforms We Work With</p>
+    <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">📦</span><span class="font-semibold text-sm">Amazon KDP</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">📚</span><span class="font-semibold text-sm">IngramSpark</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">🍎</span><span class="font-semibold text-sm">Apple Books</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">📖</span><span class="font-semibold text-sm">Kobo</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">🏬</span><span class="font-semibold text-sm">Barnes &amp; Noble</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">📕</span><span class="font-semibold text-sm">Lulu</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer">
+        <span class="text-xl">📗</span><span class="font-semibold text-sm">Draft2Digital</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TESTIMONIAL STRIPE
+════════════════════════════════════════════════════ -->
+<section class="py-20 bg-slate-950 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-10 text-center reveal">
+    <div class="section-tag justify-center" style="color:#818cf8">
+      <span class="w-4 h-px" style="background:#818cf8;display:inline-block;border-radius:2px"></span>
+      What Authors Say About the Team
+    </div>
+    <h2 class="font-display font-bold text-white text-3xl md:text-4xl mt-1">
+      Trusted by Authors Worldwide
+    </h2>
+  </div>
+
+  <!-- Infinite scroll -->
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
+         style="background:linear-gradient(90deg,#020617,transparent)"></div>
+    <div class="absolute inset-y-0 right-0 w-24 z-10 pointer-events-none"
+         style="background:linear-gradient(270deg,#020617,transparent)"></div>
+
+    <div class="flex gap-5"
+         style="animation:scrollLeft 35s linear infinite;width:max-content"
+         onmouseenter="this.style.animationPlayState='paused'"
+         onmouseleave="this.style.animationPlayState='running'">
+
+      <!-- 6 cards × 2 for seamless loop -->
+      <template id="card-tpl">
+        <div data-init="SM" data-color="from-indigo-600 to-violet-600"
+             data-name="Sarah Mitchell" data-role="Romance Author · 12 Books"
+             data-quote="Jahid's eye for detail is extraordinary. The interior layouts feel truly bespoke — my readers notice the quality."></div>
+        <div data-init="DC" data-color="from-sky-600 to-cyan-600"
+             data-name="David Chen" data-role="Business Coach"
+             data-quote="Ferdousi kept me informed at every stage. Communication was flawless and the result was better than anything I'd imagined."></div>
+        <div data-init="AB" data-color="from-violet-600 to-purple-700"
+             data-name="Amanda Brooks" data-role="Indie Self-Publisher"
+             data-quote="The Proghive team — from Jahid to Imran — made my first book feel like a professionally published title. I cannot recommend them enough."></div>
+        <div data-init="MW" data-color="from-emerald-600 to-teal-600"
+             data-name="Marcus Williams" data-role="KDP Author · 40+ Titles"
+             data-quote="I've worked with many formatters. Nobody matches Proghive's consistency and platform knowledge. They are simply the best in the business."></div>
+        <div data-init="PS" data-color="from-rose-600 to-pink-600"
+             data-name="Priya Sharma" data-role="Children's Book Author"
+             data-quote="Nayem managed my project timeline brilliantly. All five files — print and digital — delivered two days before deadline. Outstanding."></div>
+        <div data-init="JO" data-color="from-amber-600 to-orange-600"
+             data-name="James O'Connor" data-role="Memoir Author"
+             data-quote="I was nervous about formatting. Jahid walked me through everything, made smart design recommendations, and the final book moved me to tears."></div>
+      </template>
+
+      <script>
+        const tpl = document.getElementById('card-tpl');
+        const items = [...tpl.content.querySelectorAll('[data-init]')];
+        const wrap = tpl.parentElement;
+        // Build 2 sets for infinite loop
+        [1,2].forEach(() => {
+          items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'w-[300px] shrink-0 rounded-2xl p-5 border border-slate-800 bg-slate-900';
+            card.innerHTML = `
+              <div class="text-yellow-400 text-sm tracking-wider mb-3">★★★★★</div>
+              <p class="text-slate-400 text-sm leading-relaxed italic mb-5">"${item.dataset.quote}"</p>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xs shrink-0 bg-gradient-to-br ${item.dataset.color}">
+                  ${item.dataset.init}
+                </div>
+                <div>
+                  <p class="text-white font-semibold text-sm">${item.dataset.name}</p>
+                  <p class="text-slate-500 text-xs">${item.dataset.role}</p>
+                </div>
+              </div>`;
+            wrap.insertBefore(card, tpl);
+          });
+        });
+        tpl.remove();
+      </script>
+
+    </div>
+  </div>
+
+  <style>
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CTA BAND
+════════════════════════════════════════════════════ -->
+<section class="py-20 relative overflow-hidden" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#06b6d4 100%)">
+  <!-- Soft noise -->
+  <div class="absolute inset-0 opacity-[.07] pointer-events-none"
+       style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 300 300%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.55%22 numOctaves=%224%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')"></div>
+
+  <div class="relative max-w-3xl mx-auto px-5 text-center reveal">
+    <p class="text-indigo-200 text-sm font-bold tracking-[.15em] uppercase mb-3">Ready to get started?</p>
+    <h2 class="font-display font-black text-white leading-[1.1] mb-5"
+        style="font-size:clamp(2rem,4vw,3rem)">
+      Your Book Deserves<br/>World-Class Formatting
+    </h2>
+    <p class="text-white/75 text-base leading-relaxed mb-9 max-w-xl mx-auto">
+      Join 3,500+ authors who trusted Proghive Publishing to deliver professionally formatted books that readers love and platforms accept first time.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="#" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-white text-indigo-700 font-bold text-sm shadow-lg hover:bg-indigo-50 transition-colors duration-200">
+        Start Your Project →
+      </a>
+      <a href="#" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold text-sm transition-colors duration-200">
+        View Our Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ═══════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════ -->
+<script>
+// ── Sticky header ─────────────────────────────────
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 30) {
+    header.style.cssText = 'background:rgba(2,6,23,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(30,27,75,0.5);box-shadow:0 4px 24px rgba(0,0,0,0.25)';
+  } else {
+    header.style.cssText = '';
+  }
+}, { passive: true });
+
+// ── Mobile nav ────────────────────────────────────
+document.getElementById('mob-btn').addEventListener('click', function () {
+  const menu = document.getElementById('mob-menu');
+  menu.classList.toggle('hidden');
+  menu.classList.toggle('flex');
+});
+
+// ── Scroll reveal ─────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObs.observe(el));
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+// <div className="bg-white text-slate-900">
+    //   {/* =======================================================
+    //       HERO SECTION
+    //   ======================================================= */}
+    //   <section className="bg-slate-950 text-white py-28 px-5 text-center">
+    //     <h1 className="text-5xl font-bold max-w-4xl mx-auto">
+    //       We Turn Authors Into Published Professionals
+    //     </h1>
+
+    //     <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+    //       Proghive Publishing has helped thousands of authors publish
+    //       beautifully formatted books worldwide.
+    //     </p>
+    //   </section>
+
+    //   {/* =======================================================
+    //       FOUNDER SECTION
+    //   ======================================================= */}
+    //   <section className="py-24 px-5 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    //     {/* Founder Image */}
+    //     <div className="h-[420px] rounded-3xl bg-gradient-to-br from-indigo-700 to-purple-700 flex items-center justify-center text-white text-6xl font-bold shadow-xl">
+    //       JM
+    //     </div>
+
+    //     {/* Founder Info */}
+    //     <div>
+    //       <h2 className="text-3xl font-bold mb-4">Jahid Munshi — Founder</h2>
+
+    //       <p className="text-gray-600 leading-relaxed">
+    //         Chief formatter & layout designer with 8+ years of experience in
+    //         Amazon KDP, IngramSpark and EPUB publishing.
+    //       </p>
+
+    //       <div className="flex flex-wrap gap-2 mt-6">
+    //         <span className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm">
+    //           KDP
+    //         </span>
+    //         <span className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm">
+    //           IngramSpark
+    //         </span>
+    //         <span className="px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-sm">
+    //           EPUB
+    //         </span>
+    //       </div>
+    //     </div>
+    //   </section>
+
+    //   {/* =======================================================
+    //       TEAM SECTION
+    //   ======================================================= */}
+    //   <section className="py-24 px-5 max-w-5xl mx-auto">
+    //     <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
+
+    //     <div className="grid md:grid-cols-2 gap-6">
+    //       {team.map((member, i) => (
+    //         <div
+    //           key={i}
+    //           className="p-6 border rounded-2xl shadow-sm bg-white hover:shadow-md transition"
+    //         >
+    //           <h3 className="text-xl font-bold">{member.name}</h3>
+    //           <p className="text-indigo-600 font-medium">{member.role}</p>
+    //           <p className="text-gray-500 mt-2 text-sm">{member.desc}</p>
+    //         </div>
+    //       ))}
+    //     </div>
+    //   </section>
+
+    //   {/* =======================================================
+    //       VALUES SECTION
+    //   ======================================================= */}
+    //   <section className="py-20 px-5 max-w-6xl mx-auto">
+    //     <h2 className="text-3xl font-bold text-center mb-12">
+    //       Our Core Values
+    //     </h2>
+
+    //     <div className="grid md:grid-cols-4 gap-6">
+    //       {[
+    //         ["Precision", "Every book is checked twice"],
+    //         ["Partnership", "We work with authors closely"],
+    //         ["Speed", "Fast delivery without compromise"],
+    //         ["Growth", "Always improving standards"],
+    //       ].map((v, i) => (
+    //         <div
+    //           key={i}
+    //           className="p-6 border rounded-xl hover:-translate-y-1 transition"
+    //         >
+    //           <h3 className="font-bold">{v[0]}</h3>
+    //           <p className="text-gray-500 text-sm mt-2">{v[1]}</p>
+    //         </div>
+    //       ))}
+    //     </div>
+    //   </section>
+
+    //   {/* =======================================================
+    //       CTA SECTION
+    //   ======================================================= */}
+    //   <section className="py-24 bg-indigo-600 text-white text-center px-5">
+    //     <h2 className="text-4xl font-bold">Your Book Deserves the Best</h2>
+
+    //     <p className="mt-4 text-white/80 max-w-xl mx-auto">
+    //       Join 3500+ authors who trusted Proghive Publishing.
+    //     </p>
+
+    //     <button className="mt-8 px-8 py-3 bg-white text-indigo-600 font-bold rounded-xl hover:bg-gray-100 transition">
+    //       Start Your Project
+    //     </button>
+    //   </section>
+    // </div>
